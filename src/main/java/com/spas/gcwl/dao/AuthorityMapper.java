@@ -14,4 +14,5 @@ public interface AuthorityMapper {
 
     @Insert("insert into Authority(id, authority_tag) values(#{id},#{authority_tag})")
     int InsertAuthority(Authority authority);
+    //modificaion
 }

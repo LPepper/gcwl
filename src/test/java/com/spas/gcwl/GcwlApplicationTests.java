@@ -55,8 +55,7 @@ public class GcwlApplicationTests {
         System.out.println(organizations.size());
     }*/
 
-/*
-    @Autowired
+/*    @Autowired
     AuthorityMapper authorityMapper;
     @Test
     @Transactional
@@ -66,8 +65,7 @@ public class GcwlApplicationTests {
         authorityMapper.InsertAuthority(authority);
 
         authorityMapper.findAuthorityById(1);
-    }
-*/
+    }*/
 
 /*    @Autowired
     UserRoleMapper userRoleMapper;

@@ -24,4 +24,5 @@ public class UserRole {
     public void setId(Integer id) {
         this.id = id;
     }
+    //modific
 }
