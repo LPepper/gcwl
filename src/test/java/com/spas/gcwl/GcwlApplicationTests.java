@@ -1,5 +1,9 @@
 package com.spas.gcwl;
 
+import com.spas.gcwl.dao.AuthorityMapper;
+import com.spas.gcwl.dao.UserRoleMapper;
+import com.spas.gcwl.entity.Authority;
+import com.spas.gcwl.entity.UserRole;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +53,30 @@ public class GcwlApplicationTests {
 
         List<Organization> organizations=organizationMapper.findAllOrganization();
         System.out.println(organizations.size());
+    }*/
+
+/*
+    @Autowired
+    AuthorityMapper authorityMapper;
+    @Test
+    @Transactional
+    public  void AuthorityMapperTest(){
+        Authority authority = new Authority(2,"2");
+
+        authorityMapper.InsertAuthority(authority);
+
+        authorityMapper.findAuthorityById(1);
+    }
+*/
+
+/*    @Autowired
+    UserRoleMapper userRoleMapper;
+    @Test
+    @Transactional
+    public  void UserRoleTest(){
+        UserRole userRole = new UserRole("123",1);
+        userRoleMapper.insertUserRole(userRole);
+        userRoleMapper.selectIdByUserme("123");
     }*/
 
 
