@@ -18,4 +18,7 @@ public interface OrganizationMapper {
     @Select("select * from Organization ")
     List<Organization> findAllOrganization();
 
+    @Delete("delete from Organization where name=#{name}")
+    int deleteOrganizationByName(@Param("name") String name);
+
 }

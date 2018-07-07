@@ -26,5 +26,10 @@ public class OrganizationServiceImpl implements OrganizationService {
         return  this.organizationMapper.findAllOrganization();
     }
 
+    @Override
+    public int deleteOrganizationByName(String name){
+        return this.organizationMapper.deleteOrganizationByName(name);
+    }
+
 
 }

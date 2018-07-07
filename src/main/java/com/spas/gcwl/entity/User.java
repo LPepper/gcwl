@@ -5,13 +5,24 @@ public class User {
     private String password;
     private String phone;
     private String organization;
+    private String pic_url;
 
 
-    public User(String username,String password,String phone,String organization){
-        this.username=username;
-        this.password=password;
-        this.phone=phone;
-        this.organization=organization;
+
+    public User(String username, String password, String phone, String organization, String pic_url) {
+        this.username = username;
+        this.password = password;
+        this.phone = phone;
+        this.organization = organization;
+        this.pic_url = pic_url;
+    }
+
+    public String getPic_url() {
+        return pic_url;
+    }
+
+    public void setPic_url(String pic_url) {
+        this.pic_url = pic_url;
     }
 
     public void setUsername(String username) {

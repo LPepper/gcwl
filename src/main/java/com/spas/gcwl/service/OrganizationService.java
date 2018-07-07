@@ -7,4 +7,5 @@ import java.util.List;
 public interface OrganizationService {
     int insertOrganization(Organization organization);
     List<Organization> findAllOrganization();
+    int deleteOrganizationByName(String name);
 }
