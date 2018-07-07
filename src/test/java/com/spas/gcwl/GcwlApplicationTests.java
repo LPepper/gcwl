@@ -14,12 +14,17 @@ import com.spas.gcwl.dao.OrganizationMapper;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.logging.Logger;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class GcwlApplicationTests {
 
     @Autowired
     OrganizationMapper organizationMapper;
+
+    @Autowired
     UserMapper userMapper;
 
 
@@ -27,20 +32,24 @@ public class GcwlApplicationTests {
     public void contextLoads() {
     }
 
-    /*@Test
+    /*
+    @Test
     @Transactional
     public void userMapperTest(){
-        User user=new User("user1","123456","123456","sapa");
+        User user=new User("user1","123456","123456","重庆分公司");
         System.out.println(userMapper.insertUser(user));
     }*/
 
-    @Test
+    /*@Test
     @Transactional
     public void organizationMapperTest(){
-        Organization organization=new Organization("chongqing","123456","chongqing");
+        Organization organization=new Organization("重庆分公司","123456","重庆");
 
         organizationMapper.insertOrganization(organization);
-    }
+
+        List<Organization> organizations=organizationMapper.findAllOrganization();
+        System.out.println(organizations.size());
+    }*/
 
 
 

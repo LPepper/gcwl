@@ -3,6 +3,8 @@ package com.spas.gcwl.dao;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 import com.spas.gcwl.entity.User;
+import org.springframework.stereotype.Service;
+
 @Component
 @Mapper
 public interface UserMapper {
