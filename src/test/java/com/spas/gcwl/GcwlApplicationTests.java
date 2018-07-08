@@ -1,18 +1,13 @@
 package com.spas.gcwl;
 
-import com.spas.gcwl.dao.CarInfoMapper;
-import com.spas.gcwl.entity.CarInfo;
+import com.spas.gcwl.dao.*;
+import com.spas.gcwl.entity.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-
-import com.spas.gcwl.entity.User;
-import com.spas.gcwl.entity.Organization;
-import com.spas.gcwl.dao.UserMapper;
-import com.spas.gcwl.dao.OrganizationMapper;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +26,12 @@ public class GcwlApplicationTests {
 
     @Autowired
     CarInfoMapper carInfoMapper;
+
+    @Autowired
+    TeckCheckInfoMapper teckCheckInfoMapper;
+
+    @Autowired
+    ECheckInfoMapper eCheckInfoMapper;
 
 
     @Test
@@ -81,8 +82,36 @@ public class GcwlApplicationTests {
         this.carInfoMapper.deleteCarByNumber("川A12345");
     }
 
+    @Test
+    @Transactional
+    public void teckCheckInfoMapperTest(){
+        Integer type=1;
+        java.sql.Date date_sql = new java.sql.Date(System.currentTimeMillis());
+        System.out.println(date_sql);
+        TechCheckInfo techCheckInfo=new TechCheckInfo("川A123","a","a","a","a","a",date_sql,type);
+        this.teckCheckInfoMapper.addTeckCheckInfo(techCheckInfo);
+
+        List<TechCheckInfo> techCheckInfos= this.teckCheckInfoMapper.findByCarNumAndType("川A123",type);
+        System.out.println(techCheckInfos.size());
+    }
+
+    @Test
+    @Transactional
+    public void ECheckInfoMapperTest(){
+        Integer type=1;
+        Float testfloat=1.23f;
+        java.sql.Date date_sql = new java.sql.Date(System.currentTimeMillis());
+        System.out.println(date_sql);
+
+        ECheckInfo eCheckInfo=new ECheckInfo("川A123",2,testfloat,testfloat,"a","a","a","a","a","a","a","a","a","a","a","a","a",type,date_sql);
+        this.eCheckInfoMapper.addECheckInfo(eCheckInfo);
+
+        List<ECheckInfo> eCheckInfos=this.eCheckInfoMapper.findByCarNumAndType("川A123",type);
+        System.out.println(eCheckInfos.size());
 
 
+
+    }
 
 
 
