@@ -13,6 +13,6 @@ public interface AuthorityMapper {
     String findAuthorityById(Integer id);
 
     @Insert("insert into Authority(id, authority_tag) values(#{id},#{authority_tag})")
-    int InsertAuthority(Authority authority);
+    int addAuthority(Authority authority);
     //modificaion
 }

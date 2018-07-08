@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
 @Mapper
 public interface UserRoleMapper {
     @Insert("insert into UserRole(userme,id) values(#{userme},#{id})")
-    int insertUserRole(UserRole userRole);
+    int addUserRole(UserRole userRole);
 
     @Select("select id from UserRole where userme=#{userme}")
-    int selectIdByUserme(String userme);
+    int findIdByUserme(String userme);
 
     //modification
 }
