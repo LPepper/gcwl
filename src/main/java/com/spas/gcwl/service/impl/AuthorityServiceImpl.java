@@ -6,6 +6,8 @@ import com.spas.gcwl.service.AuthorityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AuthorityServiceImpl implements AuthorityService {
     @Autowired
@@ -19,5 +21,10 @@ public class AuthorityServiceImpl implements AuthorityService {
     @Override
     public int addAuthroity(Authority authority) {
         return this.authorityMapper.addAuthority(authority);
+    }
+
+    @Override
+    public List<Authority> findAllAuthority() {
+        return authorityMapper.findAllAuthority();
     }
 }
