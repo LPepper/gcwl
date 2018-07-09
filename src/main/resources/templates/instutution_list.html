@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th=”http://www.thymeleaf.org>
 <head>
     <meta name="description"
           content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
@@ -225,6 +225,16 @@
                             <td>成都办事处</td>
                             <td>123456789</td>
                             <td>成都市</td>
+                            <td>
+                                <button class="btn btn-primary" type="button">更改信息</button>
+                                <button class="btn btn-primary" type="button">删除</button>
+                            </td>
+                        </tr>
+
+                        <tr th:each="organization:${organizationlist}">
+                            <td th:text="${organization.getName()}">成都办事处</td>
+                            <td th:text="${organization.getPhone()}">123456789</td>
+                            <td th:text="${organization.getAddress()}">成都市</td>
                             <td>
                                 <button class="btn btn-primary" type="button">更改信息</button>
                                 <button class="btn btn-primary" type="button">删除</button>

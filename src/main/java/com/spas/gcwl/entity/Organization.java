@@ -4,6 +4,7 @@ public class Organization {
     private String name;
     private String phone;
     private String address;
+    private Integer id;
 
     public Organization(String name,String phone,String address){
         this.address=address;
@@ -11,6 +12,20 @@ public class Organization {
         this.name=name;
     }
 
+    public Organization(String name, String phone, String address, Integer id) {
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
+        this.id = id;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getPhone() {
         return phone;

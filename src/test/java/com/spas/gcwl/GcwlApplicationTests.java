@@ -4,21 +4,23 @@ import com.spas.gcwl.dao.*;
 import com.spas.gcwl.entity.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
+import org.slf4j.Logger;
 
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLOutput;
 import java.util.List;
-import java.util.logging.Logger;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class GcwlApplicationTests {
 
+    Logger logger=LoggerFactory.getLogger(this.getClass());
     @Autowired
     OrganizationMapper organizationMapper;
 
@@ -69,7 +71,7 @@ public class GcwlApplicationTests {
         organizationMapper.insertOrganization(organization);
 
         List<Organization> organizations=organizationMapper.findAllOrganization();
-        System.out.println(organizations.size());
+        //logger.debug(organizationMapper.findAllOrganization().toString());
 
         this.organizationMapper.deleteOrganizationByName("成都分公司");
     }
