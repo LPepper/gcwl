@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -32,6 +33,12 @@ public class GcwlApplicationTests {
 
     @Autowired
     ECheckInfoMapper eCheckInfoMapper;
+
+    @Autowired
+    RoleMapper roleMapper;
+
+    @Autowired
+    RoleAuthorityMapper roleAuthorityMapper;
 
 
     @Test
@@ -109,6 +116,41 @@ public class GcwlApplicationTests {
         List<ECheckInfo> eCheckInfos=this.eCheckInfoMapper.findByCarNumAndType("川A123",type);
         System.out.println(eCheckInfos.size());
 
+    }
+
+
+    @Test
+    @Transactional
+    public void RoleMapperTest(){
+        Integer id=1;
+        Role role=new Role(id,"系统管理员");
+
+        this.roleMapper.addRole(role);
+        List<Role> roles=this.roleMapper.findAllRole();
+        System.out.println(roles.size());
+        Role role1=this.roleMapper.findRoleById(id);
+        System.out.println(role1.getRole_name());
+        this.roleMapper.deleteRoleByid(id);
+
+        roles=this.roleMapper.findAllRole();
+        System.out.println(roles.size());
+
+
+    }
+
+    @Test
+    @Transactional
+    public void RoleAuthorityMapper(){
+        Integer id=1;
+        Integer role_id=2;
+
+        RoleAuthority roleAuthority=new RoleAuthority(id,role_id);
+
+        this.roleAuthorityMapper.addRoleAuthority(roleAuthority);
+        Integer selectid= this.roleAuthorityMapper.findAuthorityByRoleId(2);
+        System.out.println(selectid.toString());
+
+        this.roleAuthorityMapper.deleteColums(roleAuthority);
 
 
     }
