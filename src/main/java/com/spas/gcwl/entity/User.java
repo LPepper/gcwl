@@ -1,13 +1,26 @@
 package com.spas.gcwl.entity;
 
+import java.util.Set;
+
 public class User {
     private String username;
     private String password;
     private String phone;
     private String organization;
     private String pic_url;
+    private Set<String> roles;
 
+    public Set<String> getRoles() {
+        return roles;
+    }
 
+    public void setRoles(Set<String> roles) {
+        this.roles = roles;
+    }
+
+    public User(){
+
+    }
 
     public User(String username, String password, String phone, String organization, String pic_url) {
         this.username = username;

@@ -19,6 +19,11 @@ public class AuthorityServiceImpl implements AuthorityService {
     }
 
     @Override
+    public Integer findIdByTage(String Authority_tag) {
+        return this.authorityMapper.findIdByTage(Authority_tag);
+    }
+
+    @Override
     public int addAuthroity(Authority authority) {
         return this.authorityMapper.addAuthority(authority);
     }

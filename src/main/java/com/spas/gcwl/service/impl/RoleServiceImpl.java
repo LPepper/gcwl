@@ -30,6 +30,11 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    public Integer findIdByName(String role_name) {
+        return this.roleMapper.findIdByName(role_name);
+    }
+
+    @Override
     public int deleteRoleByid(Integer id) {
         return this.roleMapper.deleteRoleByid(id);
     }

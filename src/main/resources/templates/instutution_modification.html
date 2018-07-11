@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th=”http://www.thymeleaf.org>
 <head>
     <meta name="description"
           content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
@@ -213,25 +213,26 @@
                 <div class="row">
                     <div class="col-lg-4"></div>
                     <div class="col-lg-4">
-                        <form>
+                        <form method="post">
                             <div class="form-group">
                                 <fieldset disabled="">
                                 <label class="col-form-label" for="orgname">机构名</label>
-                                <input class="form-control" id="orgname" name="orgname" type="text" placeholder="机构名称" disabled="">
+                                <input class="form-control" id="orgname" name="name" type="text" th:value="${orgname}" disabled="">
                                 </fieldset>
                             </div>
                             <div class="form-group">
                                 <label class="col-form-label" for="phone_number">联系电话</label>
-                                <input class="form-control" id="phone_number" name="phone_number" type="text" placeholder="联系电话">
+                                <input class="form-control" id="phone_number" name="phone" type="text" placeholder="联系电话">
                             </div>
                             <div class="form-group">
                                 <label class="col-form-label" for="orgAddr">机构地址</label>
-                                <input class="form-control" id="orgAddr" name="orgAddr" type="text" placeholder="请填写机构详细地址">
+                                <input class="form-control" id="orgAddr" name="address" type="text" placeholder="请填写机构详细地址">
+                            </div>
+                            <div class="tile-footer">
+                                <button class="btn btn-primary" type="submit">确认修改</button>
                             </div>
                         </form>
-                        <div class="tile-footer">
-                            <button class="btn btn-primary" type="submit">确认修改</button>
-                        </div>
+
                     </div>
                     <div class="col-lg-4"></div>
 

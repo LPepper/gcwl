@@ -213,10 +213,10 @@
                 <div class="row">
                     <div class="col-lg-4"></div>
                     <div class="col-lg-4">
-                        <form>
+                        <form method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label class="col-form-label" for="addname">账号名</label>
-                                <input class="form-control" id="addname" name="addname" type="text" placeholder="账号名（长度位于3到20之间）">
+                                <input class="form-control" id="addname" name="username" type="text" placeholder="账号名（长度位于3到20之间）">
                             </div>
                             <div class="form-group">
                                 <label class="col-form-label" for="phone">联系电话</label>
@@ -224,30 +224,30 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleSelect1">所属机构</label>
-                                <select class="form-control" id="exampleSelect1">
-                                    <option>A</option>
-                                    <option>B</option>
-                                    <option>C</option>
+                                <select class="form-control" id="exampleSelect1" name="organization">
+                                    <option th:each="organzition:${organizations}" th:text="${organzition.getName()} " th:value="${organzition.getName()}"></option>
+
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="exampleSelect1">职务选择</label>
-                                <select class="form-control" id="exampleSelect1">
-                                    <option>车辆管理员</option>
-                                    <option>业务填写员</option>
-                                    <option>项目管理员</option>
+                                <select class="form-control" id="exampleSelect2" name="roles">
+                                    <option th:each="role:${roles}" th:text="${role.getRole_name()} " th:value="${role.getRole_name()}"></option>
+
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputFile">头像上传</label>
                                 <input class="form-control-file" id="exampleInputFile" type="file"
-                                       aria-describedby="fileHelp">
+                                       aria-describedby="fileHelp" name="file">
                                 <small class="form-text text-muted" id="fileHelp">请上传图片</small>
                             </div>
+
+                            <div class="tile-footer">
+                                <button class="btn btn-primary" type="submit">提交</button>
+                            </div>
                         </form>
-                        <div class="tile-footer">
-                            <button class="btn btn-primary" type="submit">提交</button>
-                        </div>
+
                     </div>
                     <div class="col-lg-4"></div>
 

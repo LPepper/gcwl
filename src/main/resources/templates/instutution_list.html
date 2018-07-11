@@ -236,8 +236,8 @@
                             <td th:text="${organization.getPhone()}">123456789</td>
                             <td th:text="${organization.getAddress()}">成都市</td>
                             <td>
-                                <button class="btn btn-primary" type="button">更改信息</button>
-                                <button class="btn btn-primary" type="button">删除</button>
+                                <a th:href="@{'/institution/modification/'+${organization.getId()}}"><button class="btn btn-primary" type="button">更改信息</button></a>
+                                <a th:href="@{/institution/list}"><button class="btn btn-primary" type="button">删除</button></a>
                             </td>
                         </tr>
                         </tbody>

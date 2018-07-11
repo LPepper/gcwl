@@ -72,7 +72,8 @@ public class GcwlApplicationTests {
 
         List<Organization> organizations=organizationMapper.findAllOrganization();
         //logger.debug(organizationMapper.findAllOrganization().toString());
-
+        Integer id=1;
+        Organization organization1=this.organizationMapper.findOrganizationById(id);
         this.organizationMapper.deleteOrganizationByName("成都分公司");
     }
 
@@ -125,15 +126,15 @@ public class GcwlApplicationTests {
     @Transactional
     public void RoleMapperTest(){
         Integer id=1;
-        Role role=new Role(id,"系统管理员");
+        Role role=new Role("系统管理员","管理用户资料");
 
         this.roleMapper.addRole(role);
         List<Role> roles=this.roleMapper.findAllRole();
         System.out.println(roles.size());
         Role role1=this.roleMapper.findRoleById(id);
-        System.out.println(role1.getRole_name());
+        //System.out.println(role1.getRole_name());
         this.roleMapper.deleteRoleByid(id);
-
+        Integer i=this.roleMapper.findIdByName("系统管理员");
         roles=this.roleMapper.findAllRole();
         System.out.println(roles.size());
 

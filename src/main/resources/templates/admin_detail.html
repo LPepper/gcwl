@@ -213,65 +213,66 @@
                 <section class="invoice">
                     <div class="row mb-4">
                         <div class="col-6">
-                            <h2 class="page-header"><i class="fa fa-user"></i> manager1</h2>
+                            <h2 class="page-header" th:text="${username}"><i class="fa fa-user"></i> </h2>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6">
-                            <form>
+                            <form method="post">
                                 <div class="form-group">
                                     <label for="exampleSelect1">所属机构修改</label>
-                                    <select class="form-control" id="exampleSelect1">
-                                        <option>A</option>
-                                        <option>B</option>
-                                        <option>C</option>
+                                    <select class="form-control" id="exampleSelect1" name="organization">
+                                        <option th:each="organzition:${organizations}" th:text="${organzition.getName()} " th:value="${organzition.getName()}"></option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleSelect1">角色修改</label>
-                                    <select class="form-control" id="exampleSelect1">
-                                        <option>车辆管理员</option>
-                                        <option>业务填写员</option>
-                                        <option>项目管理员</option>
+                                    <select class="form-control" id="exampleSelect2" name="roles">
+                                        <option th:each="role:${roles}" th:text="${role.getRole_name()} " th:value="${role.getRole_name()}"></option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                 <label class="col-form-label" for="telephone_fill"> 联系电话</label>
-                                <input class="form-control" id="telephone_fill" type="text" value="12345678910" name="telephone_fill">
+                                <input class="form-control" id="telephone_fill" type="text" th:value="${phone}" name="phone">
+                                </div>
+
+                                <div class="col-6">
+                                    <div>
+                                        <img style="height: 200px; width: 250px; display: block; margin-left:15%; " class="img-responsive" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_158bd1d28ef%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_158bd1d28ef%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22129.359375%22%20y%3D%2297.35%22%3EImage%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image">
+                                    </div>
+                                    <br>
+                                    <div class="form-group" style="margin-left: 15%">
+                                        <label for="exampleInputFile">头像上传</label>
+                                        <input class="form-control-file" id="exampleInputFile" type="file" aria-describedby="fileHelp" >
+                                        <small class="form-text text-muted" id="fileHelp">请上传图片</small>
+                                    </div>
+                                </div>
+
+
+                                <div class="tile-footer">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <button class="btn btn-primary" >重置密码</button>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <button class="btn btn-primary" type="submit">提交</button>
+                                        </div>
+                                        <div class="col-lg-4">
+                                        </div>
+
+                                    </div>
+
                                 </div>
                             </form>
                         </div>
-                        <div class="col-6">
-                            <div>
-                                <img style="height: 200px; width: 250px; display: block; margin-left:15%; " class="img-responsive" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_158bd1d28ef%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_158bd1d28ef%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22129.359375%22%20y%3D%2297.35%22%3EImage%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image">
-                            </div>
-                            <br>
-                        <div class="form-group" style="margin-left: 15%">
-                            <label for="exampleInputFile">头像上传</label>
-                            <input class="form-control-file" id="exampleInputFile" type="file" aria-describedby="fileHelp" >
-                            <small class="form-text text-muted" id="fileHelp">请上传图片</small>
-                        </div>
-                        </div>
+
                     </div>
                     <!--div class="row">
                         <div class="col-12 table-responsive">
                             <button class="btn btn-primary" type="submit">密码重置</button>
                         </div>
                     </div-->
-                    <div class="tile-footer">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <button class="btn btn-primary" type="submit">重置密码</button>
-                            </div>
-                            <div class="col-lg-4">
-                                <button class="btn btn-primary" type="submit">提交</button>
-                            </div>
-                            <div class="col-lg-4">
-                            </div>
-                            
-                        </div>
-                        
-                   </div></section>
+                   </section>
             </div>
         </div>
     </div>

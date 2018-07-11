@@ -18,6 +18,12 @@ public interface OrganizationMapper {
     @Select("select * from Organization ")
     List<Organization> findAllOrganization();
 
+    @Select("select * from Organization where id=#{id}")
+    Organization findOrganizationById(@Param("id") Integer id);
+
+    @Update("update Organization set phone=#{phone},address=#{address} where id=#{id}")
+    int updateInfoById(Organization organization);
+
     @Delete("delete from Organization where name=#{name}")
     int deleteOrganizationByName(@Param("name") String name);
 

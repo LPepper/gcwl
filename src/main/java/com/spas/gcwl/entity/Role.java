@@ -1,12 +1,38 @@
 package com.spas.gcwl.entity;
 
+import javax.validation.groups.Default;
+import java.util.Set;
+
 public class Role {
     private Integer id;
     private String role_name;
+    private String role_description;
 
-    public Role(Integer id, String role_name) {
+    private Set<String> authorities;
+
+    public Role(){
+
+    }
+
+    public Role(Integer id, String role_name, String role_description) {
         this.id = id;
         this.role_name = role_name;
+        this.role_description = role_description;
+    }
+
+
+
+    public  Role(String role_name, String role_description) {
+        this.role_name = role_name;
+        this.role_description = role_description;
+    }
+
+    public String getRole_description() {
+        return role_description;
+    }
+
+    public void setRole_description(String role_description) {
+        this.role_description = role_description;
     }
 
     public Integer getId() {
@@ -23,5 +49,13 @@ public class Role {
 
     public void setRole_name(String role_name) {
         this.role_name = role_name;
+    }
+
+    public Set<String> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(Set<String> authorities) {
+        this.authorities = authorities;
     }
 }

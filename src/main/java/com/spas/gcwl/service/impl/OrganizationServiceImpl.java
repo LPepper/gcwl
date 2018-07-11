@@ -31,5 +31,13 @@ public class OrganizationServiceImpl implements OrganizationService {
         return this.organizationMapper.deleteOrganizationByName(name);
     }
 
+    @Override
+    public Organization findOrganizationById(Integer id) {
+        return this.organizationMapper.findOrganizationById(id);
+    }
 
+    @Override
+    public int updateInfoById(Organization organization) {
+        return this.organizationMapper.updateInfoById(organization);
+    }
 }

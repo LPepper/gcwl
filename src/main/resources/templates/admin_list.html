@@ -233,11 +233,11 @@
 
                         </tr>
                         <tr th:each="user:${userlist}">
-                            <td th:text="${user.getUsername()}"><a href="admin_detail.html"></a></td>
+                            <td ><a th:text="${user.getUsername()}" th:href="@{'/admin/detail/'+${user.getUsername()}}"></a></td>
                             <td th:text="${user.getOrganization()}"></td>
                             <td th:text="${user.getPhone()}"></td>
                             <td>
-                                <button class="btn btn-primary" type="button">更改</button>
+                                <a th:href="@{'/admin/detail/'+${user.getUsername()}}">><button class="btn btn-primary" type="button">更改</button></a>
                                 <button class="btn btn-primary" type="button">删除</button>
                             </td>
 
