@@ -2,7 +2,10 @@ package com.spas.gcwl.service;
 
 import com.spas.gcwl.entity.UserRole;
 
+import java.util.List;
+
 public interface UserRoleService {
     int addUserRole(UserRole userRole);
-    int findIdByUserme(String userme);
+    List<Integer> findIdByUserme(String userme);
+    int deleteALlRoleByName( String userme);
 }

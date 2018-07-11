@@ -21,4 +21,7 @@ public interface RoleAuthorityMapper {
 
     @Delete("delete from RoleAuthority where id=#{id} and Role_id=#{Role_id}")
     int deleteColums(RoleAuthority roleAuthority);
+
+    @Delete("delete from RoleAuthority where  Role_id=#{Role_id}")
+    int deleteByRoleId(@Param("Role_id") Integer Role_id);
 }

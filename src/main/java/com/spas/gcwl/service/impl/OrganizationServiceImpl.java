@@ -40,4 +40,9 @@ public class OrganizationServiceImpl implements OrganizationService {
     public int updateInfoById(Organization organization) {
         return this.organizationMapper.updateInfoById(organization);
     }
+
+    @Override
+    public int deleteOrganizationById(Integer id) {
+        return this.organizationMapper.deleteOrganizationById(id);
+    }
 }

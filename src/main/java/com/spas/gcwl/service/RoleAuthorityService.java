@@ -7,6 +7,7 @@ public interface RoleAuthorityService {
     int addRoleAuthority(RoleAuthority roleAuthority);
     Integer findAuthorityByRoleId( Integer Role_id );
     int deleteColums(RoleAuthority roleAuthority);
+    int deleteByRoleId( Integer Role_id);
 
 
 }

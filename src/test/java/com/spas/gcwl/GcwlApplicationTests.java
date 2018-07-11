@@ -42,6 +42,9 @@ public class GcwlApplicationTests {
     @Autowired
     RoleAuthorityMapper roleAuthorityMapper;
 
+    @Autowired
+    UserRoleMapper userRoleMapper;
+
 
     @Test
     public void contextLoads() {
@@ -60,6 +63,7 @@ public class GcwlApplicationTests {
 
         userMapper.updateUserPassword(user);
         this.userMapper.updateUserInfoExceptPassword(user);
+        this.userMapper.deleteUser("user2");
         System.out.println(user1.getPassword());
     }
 
@@ -75,6 +79,7 @@ public class GcwlApplicationTests {
         Integer id=1;
         Organization organization1=this.organizationMapper.findOrganizationById(id);
         this.organizationMapper.deleteOrganizationByName("成都分公司");
+        this.organizationMapper.deleteOrganizationById(id);
     }
 
     @Test
@@ -158,6 +163,15 @@ public class GcwlApplicationTests {
 
     }
 
+    @Test
+    @Transactional
+    public void UserRoleMapperTest(){
+        Integer id=1;
+        UserRole userRole=new UserRole("user2",id);
+        this.userRoleMapper.addUserRole(userRole);
+        List<Integer> integers=this.userRoleMapper.findIdByUserme("user2");
+        System.out.println(integers.size());
 
+    }
 
 }

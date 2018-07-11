@@ -29,4 +29,9 @@ public class RoleAuthorityServiceImpl implements RoleAuthorityService {
     public int deleteColums(RoleAuthority roleAuthority) {
         return this.roleAuthorityMapper.deleteColums(roleAuthority);
     }
+
+    @Override
+    public int deleteByRoleId(Integer Role_id) {
+        return this.roleAuthorityMapper.deleteByRoleId(Role_id);
+    }
 }

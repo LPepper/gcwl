@@ -68,7 +68,7 @@ public class InstitutionController {
         return modelAndView;
     }
 
-
+    //修改机构
     @PostMapping("/modification/{id}")
     public ModelAndView modification(@PathVariable(value = "id") String id,HttpServletRequest request){
         Integer org_id=Integer.valueOf(id);
@@ -86,6 +86,15 @@ public class InstitutionController {
         modelAndView.addObject("orgname",organization.getName());
 
 
+        return modelAndView;
+    }
+
+    //删除机构
+    @GetMapping("/delete/{id}")
+    public ModelAndView deleteInstitution(@PathVariable("id") String id){
+        Integer Iid=Integer.valueOf(id);
+        this.organizationService.deleteOrganizationById(Iid);
+        ModelAndView modelAndView=new ModelAndView("forward:/institution/list");
         return modelAndView;
     }
 }

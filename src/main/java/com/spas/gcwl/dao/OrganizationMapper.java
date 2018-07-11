@@ -27,4 +27,7 @@ public interface OrganizationMapper {
     @Delete("delete from Organization where name=#{name}")
     int deleteOrganizationByName(@Param("name") String name);
 
+    @Delete("delete from Organization where id=#{id}")
+    int deleteOrganizationById(@Param("id") Integer id);
+
 }

@@ -16,6 +16,10 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
 
+    @Override
+    public int deleteUser(String username) {
+        return this.userMapper.deleteUser(username);
+    }
 
     @Override
     public int insertUser(User user){

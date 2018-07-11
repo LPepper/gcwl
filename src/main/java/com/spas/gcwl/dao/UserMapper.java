@@ -26,5 +26,8 @@ public interface UserMapper {
     @Update("update User set password=#{password} where username=#{username}")
     int updateUserPassword(User user);
 
+    @Delete("delete from User where username=#{username}")
+    int deleteUser(@Param("username") String username);
+
 
 }

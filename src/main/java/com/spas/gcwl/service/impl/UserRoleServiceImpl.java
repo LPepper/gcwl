@@ -6,6 +6,8 @@ import com.spas.gcwl.service.UserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserRoleServiceImpl implements UserRoleService {
     @Autowired
@@ -17,7 +19,12 @@ public class UserRoleServiceImpl implements UserRoleService {
     }
 
     @Override
-    public int findIdByUserme(String userme) {
+    public int deleteALlRoleByName(String userme) {
+        return this.userRoleMapper.deleteALlRoleByName(userme);
+    }
+
+    @Override
+    public List<Integer> findIdByUserme(String userme) {
         return this.userRoleMapper.findIdByUserme(userme);
     }
 }

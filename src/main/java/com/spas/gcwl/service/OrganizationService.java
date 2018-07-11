@@ -11,4 +11,5 @@ public interface OrganizationService {
     int deleteOrganizationByName(String name);
     Organization findOrganizationById(Integer id);
     int updateInfoById(Organization organization);
+    int deleteOrganizationById(Integer id);
 }

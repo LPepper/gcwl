@@ -8,10 +8,7 @@ import com.spas.gcwl.service.impl.RoleAuthorityServiceImpl;
 import com.spas.gcwl.service.impl.RoleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -52,6 +49,7 @@ public class RoleController {
         return modelAndView;
     }
 
+    //增加角色
     @PostMapping("/add")
     public ModelAndView add(Role role){
 
@@ -61,7 +59,7 @@ public class RoleController {
 
         for(String i:authorities){
             Integer aid=this.authorityService.findIdByTage(i);
-            RoleAuthority roleAuthority=new RoleAuthority(rid,aid);
+            RoleAuthority roleAuthority=new RoleAuthority(aid,rid);
 
             this.roleAuthorityService.addRoleAuthority(roleAuthority);
         }
@@ -70,4 +68,16 @@ public class RoleController {
 
         return modelAndView;
     }
+
+    //删除角色
+    @GetMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable("id") String id){
+        Integer rid=Integer.valueOf(id );
+        this.roleService.deleteRoleByid(rid);
+        this.roleAuthorityService.deleteByRoleId(rid);
+
+        ModelAndView modelAndView=new ModelAndView("forward:/role/list");
+        return modelAndView;
+    }
+
 }
