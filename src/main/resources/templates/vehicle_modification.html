@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th=”http://www.thymeleaf.org>
 <head>
     <meta name="description"
           content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
@@ -20,7 +20,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Main CSS-->
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css"
           href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -162,43 +162,38 @@
             <div class="tile">
                 <div class="row">
                     <div class="col-lg-6">
-                        <form>
+                        <form method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label class="col-form-label" for="inputDefault">车牌号</label>
-                                <input class="form-control" id="inputDefault" type="text" placeholder="粤A BCDEF">
+                                <input class="form-control" id="inputDefault" type="text" th:value="${carInfo.getNumber()}" name="number">
                             </div>
                             <div class="form-group">
                                 <label class="col-form-label" for="inputDefault">车辆规格（单位：米）</label>
-                                <input class="form-control" id="inputDefault" type="text" placeholder="6.8">
+                                <input class="form-control" id="inputDefault" type="text" th:value="${carInfo.getLength()}+'*'+${carInfo.getWidth()}+'*'+${carInfo.getHeight()}" name="carTp">
                             </div>
                             <div class="form-group">
                                 <label class="col-form-label" for="inputDefault">载重量（单位：吨）</label>
-                                <input class="form-control" id="inputDefault" type="text" placeholder="8">
+                                <input class="form-control" id="inputDefault" type="text" th:value="${carInfo.getCarload()}" name="carload">
                             </div>
                             <div class="form-group">
-                                <label class="col-form-label" for="inputDefault">购入时间</label>
-                                <input class="form-control" id="inputDefault" type="text" placeholder="2017-06-30">
+                                <label class="col-form-label" for="inputDefault">归属地</label>
+                                <input class="form-control" id="inputDefault" type="text" th:value="${carInfo.getBelong()}" name="belong">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputFile">图片上传</label>
                                 <input class="form-control-file" id="exampleInputFile" type="file"
-                                       aria-describedby="fileHelp">
+                                       aria-describedby="fileHelp" name="file">
                                 <small class="form-text text-muted" id="fileHelp">请上传图片</small>
                             </div>
-                        </form>
-                        <div class="tile-footer">
-                            <button class="btn btn-primary" type="submit">Submit</button>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 offset-lg-1">
-                        <form>
+
+
                             <div class="form-group">
-                                <label class="col-form-label" for="inputDefault">车辆型号</label>
-                                <input class="form-control" id="inputDefault" type="text" placeholder="PLUS JX4D30 ">
+                                <label class="col-form-label" for="inputDefault">当前位置</label>
+                                <input class="form-control" id="inputDefault" type="text" th:value="${carInfo.getLocation()} " name="location">
                             </div>
                             <div class="form-group">
                                 <label class="col-form-label" for="inputDefault">车辆类型</label>
-                                <input class="form-control" id="inputDefault" type="text" placeholder="高栏车">
+                                <input class="form-control" id="inputDefault" type="text" th:value="${carInfo.getType()}" name="type">
                             </div>
                             <div class="form-group">
                                 <label class="control-label">购入价值（单位：万元）</label>
@@ -206,27 +201,67 @@
                                     <label class="sr-only" for="exampleInputAmount">Amount (in yuan)</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend"><span class="input-group-text">¥</span></div>
-                                        <input class="form-control" id="exampleInputAmount" type="text" placeholder="7">
-                                        <div class="input-group-append"><span class="input-group-text">.</span></div>
-                                        <input class="form-control" id="exampleInputAmount" type="text"
-                                               placeholder="08">
+                                        <input class="form-control" id="exampleInputAmount" type="text" th:value="${carInfo.getPrice()}" name="price">
+                                        <!--<div class="input-group-append"><span class="input-group-text">.</span></div>-->
+                                        <!--<input class="form-control" id="exampleInputAmount" type="text"-->
+                                        <!--placeholder="08">-->
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label">物流定价（单位：元）</label>
+                                <label class="control-label">物流定价/天（单位：元）</label>
                                 <div class="form-group">
                                     <label class="sr-only" for="exampleInputAmount">Amount (in yuan)</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend"><span class="input-group-text">¥</span></div>
                                         <input class="form-control" id="exampleInputAmount" type="text"
-                                               placeholder="3000">
-                                        <div class="input-group-append"><span class="input-group-text">.</span></div>
-                                        <input class="form-control" id="exampleInputAmount" type="text"
-                                               placeholder="00">
+                                               th:value="${carInfo.getPrice_per_day()}" name="price_per_day">
+
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="tile-footer">
+                                <button class="btn btn-primary" type="submit">提交</button>
+                            </div>
+
+                        </form>
+
+                    <div class="col-lg-4 offset-lg-1">
+                        <form>
+                            <!--<div class="form-group">-->
+                                <!--<label class="col-form-label" for="inputDefault">当前位置</label>-->
+                                <!--<input class="form-control" id="inputDefault" type="text" th:value="${carInfo.getLocation()} " name="location">-->
+                            <!--</div>-->
+                            <!--<div class="form-group">-->
+                                <!--<label class="col-form-label" for="inputDefault">车辆类型</label>-->
+                                <!--<input class="form-control" id="inputDefault" type="text" th:value="${carInfo.getType()}" name="type">-->
+                            <!--</div>-->
+                            <!--<div class="form-group">-->
+                                <!--<label class="control-label">购入价值（单位：万元）</label>-->
+                                <!--<div class="form-group">-->
+                                    <!--<label class="sr-only" for="exampleInputAmount">Amount (in yuan)</label>-->
+                                    <!--<div class="input-group">-->
+                                        <!--<div class="input-group-prepend"><span class="input-group-text">¥</span></div>-->
+                                        <!--<input class="form-control" id="exampleInputAmount" type="text" th:value="${carInfo.getPrice()}" name="price">-->
+                                        <!--&lt;!&ndash;<div class="input-group-append"><span class="input-group-text">.</span></div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<input class="form-control" id="exampleInputAmount" type="text"&ndash;&gt;-->
+                                               <!--&lt;!&ndash;placeholder="08">&ndash;&gt;-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="form-group">-->
+                                <!--<label class="control-label">物流定价/天（单位：元）</label>-->
+                                <!--<div class="form-group">-->
+                                    <!--<label class="sr-only" for="exampleInputAmount">Amount (in yuan)</label>-->
+                                    <!--<div class="input-group">-->
+                                        <!--<div class="input-group-prepend"><span class="input-group-text">¥</span></div>-->
+                                        <!--<input class="form-control" id="exampleInputAmount" type="text"-->
+                                               <!--th:value="${carInfo.getPrice_per_day()}" name="price_per_day">-->
+
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
                             <!--div class="form-group">
                               <fieldset disabled="">
                                 <label class="control-label" for="disabledInput">Disabled input</label>
@@ -285,16 +320,16 @@
     </div>
 </main>
 <!-- Essential javascripts for application to work-->
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/main.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
 <!-- The javascript plugin to display page loading on top-->
-<script src="js/plugins/pace.min.js"></script>
+<script src="/js/plugins/pace.min.js"></script>
 <!-- Page specific javascripts-->
 <!-- Data table plugin-->
-<script type="text/javascript" src="js/plugins/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="js/plugins/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/plugins/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/js/plugins/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript">$('#sampleTable').DataTable();</script>
 <!-- Google analytics script-->
 <script type="text/javascript">

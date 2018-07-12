@@ -24,7 +24,7 @@ public class ProjectACarImpl implements ProjectACarService {
     }
 
     @Override
-    public int findProject_idByNumber(String number) {
+    public List<Integer> findProject_idByNumber(String number) {
         return projectACarMapper.findProject_idByNumber(number);
     }
 }
