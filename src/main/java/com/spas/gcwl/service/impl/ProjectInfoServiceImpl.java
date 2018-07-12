@@ -54,7 +54,11 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
     }
 
     @Override
-    public int commitProjectInfoById(Integer project_id) {
-        return projectInfoMapper.commitProjectInfoById(project_id);
+    public int commitProjectInfoById(ProjectInfo projectInfo) {
+        return projectInfoMapper.commitProjectInfoById(projectInfo);
+    }
+
+    public int deleteProjecctInfoById(Integer project_id){
+        return  projectInfoMapper.deleteProjecctInfoById(project_id);
     }
 }

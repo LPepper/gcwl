@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th=”http://www.thymeleaf.org>
 <head>
     <meta name="description"
           content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
@@ -20,11 +20,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Main CSS-->
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css"
           href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrapValidator.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrapValidator.min.css">
 </head>
 <body class="app sidebar-mini rtl">
 <!-- Navbar-->
@@ -128,9 +128,9 @@
                 class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">账号信息</span><i
                 class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-                <li><a class="treeview-item" href="admin_add.html"><i class="icon fa fa-circle-o"></i> 增加账号信息</a>
+                <li><a class="treeview-item" href="/admin/add"><i class="icon fa fa-circle-o"></i> 增加账号信息</a>
                 </li>
-                <li><a class="treeview-item " href="admin_list.html"><i class="icon fa fa-circle-o"></i> 查看账号列表</a></li>
+                <li><a class="treeview-item " href="/admin/list"><i class="icon fa fa-circle-o"></i> 查看账号列表</a></li>
 
             </ul>
         </li>
@@ -138,9 +138,9 @@
                 class="app-menu__icon fa fa-university"></i><span class="app-menu__label">机构信息</span><i
                 class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-                <li><a class="treeview-item" href="admin_add.html"><i class="icon fa fa-circle-o"></i> 增加机构</a>
+                <li><a class="treeview-item" href="instutution/add"><i class="icon fa fa-circle-o"></i> 增加机构</a>
                 </li>
-                <li><a class="treeview-item " href="admin_list.html"><i class="icon fa fa-circle-o"></i> 查看机构列表</a></li>
+                <li><a class="treeview-item " href="instutution/list"><i class="icon fa fa-circle-o"></i> 查看机构列表</a></li>
 
             </ul>
         </li>
@@ -213,16 +213,24 @@
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-4">
-                            <form>
+                            <form method="post">
                                 <div class="form-group">
-                                <label class="control-label" for="start">出发地</label>
-                                <input class="form-control" type="text" placeholder="请填写出发地址" id="start" name="start">
+                                <label class="control-label" for="name">项目名</label>
+                                <input class="form-control" type="text" placeholder="请填项目名" id="name" name="name">
                                 </div>
                                 <div class="form-group">
-                                <label class="control-label" for="destination">目的地</label>
-                                <input class="form-control" type="text" placeholder="请填写目的地址" id="destination" name="destination">
+                                    <label class="control-label" for="bdate">出发日期</label>
+                                    <input class="form-control" type="text" placeholder="Enter full name" id="bdate" name="bdate">
                                 </div>
                                 <div class="form-group">
+                                <label class="control-label" for="blocation">出发地</label>
+                                <input class="form-control" type="text" placeholder="请填写出发地址" id="blocation" name="blocation">
+                                </div>
+                                <div class="form-group">
+                                <label class="control-label" for="elocation">目的地</label>
+                                <input class="form-control" type="text" placeholder="请填写目的地址" id="elocation" name="elocation">
+                                </div>
+                                <!--div class="form-group">
                                 <label class="control-label" for="goodsLoad">货物重量（单位：吨）</label>
                                 <input class="form-control" type="text" placeholder="请填写重量数字" id="goodsLoad" name="goodsLoad">
                                 </div>
@@ -231,43 +239,43 @@
                                 <input class="form-control" type="text" 
                                 id="goodsTP" name="goodsTP" 
                                 placeholder="例如：1*1*1">
+                                </div-->
+
+
+                                <div class="form-group">
+                                <label class="control-label" for="goods_info">货物信息</label>
+                                <textarea class="form-control" rows="4" placeholder="请填货物信息（重量（吨）、尺寸（米）等）与其他需求" id="goods_info" name="goods_info"></textarea>
                                 </div>
                                 <div class="form-group">
-                                <label class="control-label" for="startTime">出发日期</label>
-                                <input class="form-control" type="text" placeholder="Enter full name" id="startTime" name="startTime">
+                                    <label class="control-label" for="phone">联系电话</label>
+                                    <input class="form-control" type="text" placeholder="请填写手机号" id="phone" name="phone">
                                 </div>
-                                <div class="form-group">
-                                <label class="control-label" for="phone_number">联系电话</label>
-                                <input class="form-control" type="text" placeholder="请填写手机号" id="phone_number" name="phone_number">
-                                </div>
-                                <div class="form-group">
-                                <label class="control-label" for="others">其他描述</label>
-                                <textarea class="form-control" rows="4" placeholder="请填写其他需求" id="others" name="others"></textarea>
+
+                                <div class="tile-footer">
+                                    <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i> 提交项目
+                                    </button>&nbsp;&nbsp;&nbsp;
                                 </div>
                             </form>
-                             <div class="tile-footer">
-                            <button class="btn btn-primary" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i> 提交项目
-                            </button>&nbsp;&nbsp;&nbsp;
-                            </div>
+
                         </div>
                         <div class="col-md-4"></div>
                     </div>
                    
             </div>
         </div>
-        
+        </div>
     </div>
 </main>
 <!-- Essential javascripts for application to work-->
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/main.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
 <!-- The javascript plugin to display page loading on top-->
-<script src="js/plugins/pace.min.js"></script>
-<script src="js/plugins/bootstrapValidator.min.js"></script>
-<script src="js/plugins/bootstrap-datepicker.min.js"></script>
-<script src="js/plugins/bootstrap-datepicker.zh-CN.js"></script>
+<script src="/js/plugins/pace.min.js"></script>
+<script src="/js/plugins/bootstrapValidator.min.js"></script>
+<script src="/js/plugins/bootstrap-datepicker.min.js"></script>
+<script src="/js/plugins/bootstrap-datepicker.zh-CN.js"></script>
 <!-- Page specific javascripts-->
 <!-- Google analytics script-->
 <script type="text/javascript">

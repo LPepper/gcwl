@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 @Mapper
 public interface ProjectInfoMapper {
-    @Insert("insert into ProjectInfo(userme,name,bdate,edate,state,blocation,elocation,goods_info,phone) values(#{userme},#{name},#{bdate},#{edate},#{state},#{blocation},#{elocation},#{goods_info},#{phone})")
+    @Insert("insert into ProjectInfo(userme,name,bdate,state,blocation,elocation,goods_info,phone) values(#{userme},#{name},#{bdate},#{state},#{blocation},#{elocation},#{goods_info},#{phone})")
     int submitProjectInfo(ProjectInfo projectInfo);
 
     @Select("select * from ProjectInfo where userme=#{userme}")
@@ -30,6 +30,9 @@ public interface ProjectInfoMapper {
     int repocessProjectInfoById(Integer project_id);
     @Update("update ProjectInfo set state='processing' where project_id=#{project_id}")
     int processingProjectInfoById(Integer project_id);
-    @Update("update ProjectInfo set state='committed' where project_id=#{project_id}")
-    int commitProjectInfoById(Integer project_id);
+    @Update("update ProjectInfo set state=#{state},edate=#{edate} where project_id=#{project_id}")
+    int commitProjectInfoById(ProjectInfo projectInfo);
+
+    @Delete("delete from ProjectInfo where project_id=#{project_id}")
+    int deleteProjecctInfoById(Integer project_id);
 }

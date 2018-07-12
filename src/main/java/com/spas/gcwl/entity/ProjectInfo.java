@@ -15,11 +15,10 @@ public class ProjectInfo {
     private String handler_username;
     private String phone;
 
-    public ProjectInfo(String userme, String name, Date bdate, Date edate, String state, String blocation, String elocation, String goods_info, String phone) {
+    public ProjectInfo(String userme, String name, Date bdate, String state, String blocation, String elocation, String goods_info, String phone) {
         this.userme = userme;
         this.name = name;
         this.bdate = bdate;
-        this.edate = edate;
         this.state = state;
         this.blocation = blocation;
         this.elocation = elocation;
@@ -34,18 +33,21 @@ public class ProjectInfo {
         this.handler_username = handler_username;
     }
 
-    public ProjectInfo(Integer project_id, String userme, String name, Date bdate, Date edate, Float offer, String state, String blocation, String elocation, String goods_info, String handler_username, String phone) {
+    public ProjectInfo(){}
+
+
+    public ProjectInfo(Integer project_id, Date edate, String state) {
         this.project_id = project_id;
-        this.userme = userme;
+        this.edate = edate;
+        this.state = state;
+    }
+
+    public ProjectInfo(String name, Date bdate, String blocation, String elocation, String goods_info, String phone) {
         this.name = name;
         this.bdate = bdate;
-        this.edate = edate;
-        this.offer = offer;
-        this.state = state;
         this.blocation = blocation;
         this.elocation = elocation;
         this.goods_info = goods_info;
-        this.handler_username = handler_username;
         this.phone = phone;
     }
 

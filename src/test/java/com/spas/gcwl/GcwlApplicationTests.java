@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.sql.SQLOutput;
 import java.util.List;
 
@@ -20,7 +21,7 @@ import java.util.List;
 @SpringBootTest
 public class GcwlApplicationTests {
 
-    Logger logger=LoggerFactory.getLogger(this.getClass());
+    /*Logger logger=LoggerFactory.getLogger(this.getClass());
     @Autowired
     OrganizationMapper organizationMapper;
 
@@ -172,6 +173,26 @@ public class GcwlApplicationTests {
         List<Integer> integers=this.userRoleMapper.findIdByUserme("user2");
         System.out.println(integers.size());
 
+    }*/
+    @Autowired
+    ProjectInfoMapper projectInfoMapper;
+    @Test
+    @Transactional
+    public void ProjectInfoTest(){
+        Date date=new Date(System.currentTimeMillis());
+        ProjectInfo projectInfo1=new ProjectInfo("123","123",date,"submitted","123","456","123","123");
+        ProjectInfo projectInfo2=new ProjectInfo(1,Float.parseFloat("123"),"processed","123456");
+        ProjectInfo projectInfo3=new ProjectInfo(1,date,"committed");
+
+        projectInfoMapper.submitProjectInfo(projectInfo1);
+        projectInfoMapper.findAllSubmittedProjectInfoByUserme("123");
+        projectInfoMapper.findAllSubmittedProjectInfo();
+        projectInfoMapper.processSubmittedProjectInfoById(projectInfo2);
+        projectInfoMapper.findAllSubmittedProjectInfo();
+        projectInfoMapper.findAllProcessedProjectInfoByHandler("123456");
+        projectInfoMapper.findProjectInfoById(1);
+        projectInfoMapper.processingProjectInfoById(1);
+        projectInfoMapper.repocessProjectInfoById(1);
     }
 
 }

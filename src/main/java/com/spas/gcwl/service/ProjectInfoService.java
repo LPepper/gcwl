@@ -15,5 +15,6 @@ public interface ProjectInfoService {
     int processSubmittedProjectInfoById(ProjectInfo projectInfo);
     int reprocessProjectInfoById(Integer project_id);
     int processingProjectInfoById(Integer project_id);
-    int commitProjectInfoById(Integer project_id);
+    int commitProjectInfoById(ProjectInfo projectInfo);
+    int deleteProjecctInfoById(Integer project_id);
 }
