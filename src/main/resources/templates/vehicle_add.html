@@ -216,7 +216,7 @@
                             <div class="form-group">
                                 <label class="col-form-label" for="carId">车牌号</label>
                                 <div class="row" style="margin-left: 0%">
-                                <select class="form-control col-lg-2" id="carPrefix">
+                                <select class="form-control col-lg-2" id="carPrefix" name="prefix">
                                     <option>京</option>
                                     <option>津</option>
                                     <option>沪</option>
@@ -250,7 +250,7 @@
                                     <option>琼</option>
                                 </select>
                                 <div class="col-lg-2"></div>
-                                <input class="form-control col-lg-7" id="carSuffix" name="carSuffix" type="text" placeholder="六位代码">
+                                <input class="form-control col-lg-7" id="carSuffix" name="suffix" type="text" placeholder="六位代码">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -259,7 +259,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="col-form-label" for="carLoad">载重量（单位：吨）</label>
-                                <input class="form-control" id="carLoad" name="carLoad" type="text" placeholder="请填写数字">
+                                <input class="form-control" id="carLoad" name="carload" type="text" placeholder="请填写数字">
                             </div>
                             <div class="form-group">
                                 <label class="control-label">购入价值（单位：万元）</label>
@@ -268,17 +268,15 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend"><span class="input-group-text">¥</span></div>
                                         <input class="form-control col-lg-4" id="exampleInputAmount" type="text"
-                                               placeholder="金额">
-                                        <div class="input-group-append"><span class="input-group-text">.</span></div>
-                                        <input class="form-control col-lg-2" id="exampleInputAmount2" type="text"
-                                               placeholder="00">
+                                               placeholder="金额" name="price">
+
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputFile">图片上传</label>
                                 <input class="form-control-file" id="exampleInputFile" type="file"
-                                       aria-describedby="fileHelp">
+                                       aria-describedby="fileHelp" name="file">
                                 <small class="form-text text-muted" id="fileHelp">请上传图片</small>
                             </div>
                         
@@ -289,18 +287,19 @@
                     <div class="col-lg-6">
                         
                             <div class="form-group">
-                                <label class="col-form-label" for="carInfo">车辆型号</label>
-                                <input class="form-control" id="carInfo" name="carInfo" type="text">
+                                <label class="col-form-label" for="carInfo">车辆类型</label>
+                                <input class="form-control" id="carInfo" name="type" type="text">
                             </div>
                             <div class="form-group">
-                                <label class="col-form-label" for="carType">车辆类型</label>
-                                <input class="form-control" id="carType" name="carType" type="text">
+                                <label class="col-form-label" for="carType">当前地点</label>
+                                <input class="form-control" id="carType" name="location" type="text">
                             </div>
-                            <div class="form-group">
-                                <label class="col-form-label" for="buyTime">购入时间</label>
-                                <input class="form-control" id="buyTime"
-                                name="buyTime" type="text">
-                            </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="belong">归属地</label>
+                            <input class="form-control" id="belong" name="belong" type="text">
+                        </div>
+
                             
                             <div class="form-group">
                                 <label class="control-label">物流定价（单位：元）</label>
@@ -309,10 +308,8 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend"><span class="input-group-text">¥</span></div>
                                         <input class="form-control col-lg-4" id="exampleInputAmount" type="text"
-                                               placeholder="定价">
-                                        <div class="input-group-append"><span class="input-group-text">.</span></div>
-                                        <input class="form-control col-lg-2" id="exampleInputAmount" type="text"
-                                               placeholder="00">
+                                               placeholder="定价" name="price_per_day">
+
                                     </div>
                                 </div>
                             </div>

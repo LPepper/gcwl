@@ -45,6 +45,16 @@ public class CarInfoSeiviceImpl implements CarInfoService {
     }
 
     @Override
+    public int deleteCarById(Integer id) {
+        return this.carInfoMapper.deleteCarById(id);
+    }
+
+    @Override
+    public CarInfo findCarById(Integer id) {
+        return this.carInfoMapper.findCarById(id);
+    }
+
+    @Override
     public int updateAllInfo(CarInfo carInfo){
         return this.carInfoMapper.updateAllInfo(carInfo);
     }

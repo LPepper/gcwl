@@ -86,7 +86,7 @@ public class GcwlApplicationTests {
     @Test
     @Transactional
     public void carinfoMapperTest(){
-        CarInfo carInfo=new CarInfo("川A12346","高栏车",Float.parseFloat("6"),Float.parseFloat("2"),Float.parseFloat("3"),Float.parseFloat("10"),"重庆","四川",Float.parseFloat("30"),Float.parseFloat("3000"),"空闲");
+        CarInfo carInfo=new CarInfo("川A12346","高栏车",Float.parseFloat("6"),Float.parseFloat("2"),Float.parseFloat("3"),Float.parseFloat("10"),"重庆","四川",Float.parseFloat("30"),Float.parseFloat("3000"),"空闲","url");
         this.carInfoMapper.addCarInfo(carInfo);
         List<CarInfo> carInfos=this.carInfoMapper.findAllCarInfo();
         CarInfo carInfo1=this.carInfoMapper.findCarByNumber("川A12345");

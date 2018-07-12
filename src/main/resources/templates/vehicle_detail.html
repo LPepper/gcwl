@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th=”http://www.thymeleaf.org>
 <head>
     <meta name="description"
           content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
@@ -163,25 +163,25 @@
                 <section class="invoice">
                     <div class="row mb-4">
                         <div class="col-6">
-                            <h2 class="page-header"><i class="fa fa-truck"></i> 粤A BCDEF</h2>
+                            <h2 class="page-header" th:text="${carInfo.getNumber()}"><i class="fa fa-truck"></i> </h2>
                         </div>
-                        <div class="col-6">
-                            <h5 class="text-right">购入日期: 06/30/2017</h5>
-                        </div>
+                        <!--<div class="col-6">-->
+                            <!--<h5 class="text-right">购入日期: 06/30/2017</h5>-->
+                        <!--</div>-->
                     </div>
                     <div class="row invoice-info">
                         <div class="col-4"><strong>车辆信息</strong>
-                            <address><strong> </strong><br>高栏车<br>PLUS JX4D30 <br>长 6.8 米<br>载重 8 吨</address>
+                            <address><strong> </strong><br><p th:text="${carInfo.getType()}"></p><p th:text="'规格： '+${carInfo.getLength()}+'*'+${carInfo.getWidth()}+'*'+${carInfo.getHeight()}"></p><p th:text="'载重 '+${carInfo.getCarload()}+'吨'"></p><p th:text="'状态 '+${carInfo.getState()}"></p></address>
                             <div class="row d-print-none mt-2">
                                 <div class="col-12 text-left"><a class="btn btn-primary"
-                                                                 href="vehicle_modification.html" target="_blank"><i
+                                                                 th:href="@{'/vehicle/modification/'+${carInfo.getId()}}" target="_blank"><i
                                         class="fa fa-pencil-square-o"></i> 修改信息</a></div>
                             </div>
                         </div>
                         <div class="col-4"><strong>其他信息</strong>
-                            <address><strong> </strong><br>归属地 成都<br>所在地 成都<br>状态 空闲<br>定价 3000 元<br>市场价 7.08万</address>
+                            <address><strong> </strong><br><p th:text="'归属地 '+${carInfo.getBelong()}"></p> <p th:text="'所在地 '+${carInfo.getLocation()}"></p>  <p th:text="'物流价格 '+${carInfo.getPrice_per_day()+' 元/天'}"></p> <p th:text="'市场价 '+${carInfo.getPrice()+' 万元'}"></p></address>
                         </div>
-                        <div class="col-4"><img class="" src="vehicle.png" height="150" width="200" alt="User Image">
+                        <div class="col-4"><img class="" th:src="@{'/'+${pic_url}}" height="150" width="200" alt="User Image">
                         </div>
                     </div>
                     <div class="row">
@@ -239,18 +239,17 @@
                                             <th>结束时间</th>
                                             <th>出发地</th>
                                             <th>目的地</th>
-                                            <th>订单价格（单位：元）</th>
-                                            <th>货物重量（单位：吨）</th>
+                                            <th>货物信息</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>2018-01-01</td>
-                                            <td>2018-01-02</td>
-                                            <td>成都</td>
-                                            <td>重庆</td>
-                                            <td>3000</td>
-                                            <td>5.0</td>
+
+                                        <tr th:each="projectInfo:${projectInfos}">
+                                            <td th:text="${projectInfo.getBdate()}"></td>
+                                            <td th:text="${projectInfo.getEdate()}"></td>
+                                            <td th:text="${projectInfo.getBlocation()}"></td>
+                                            <td th:text="${projectInfo.getElocation()}"></td>
+                                            <td th:text="${projectInfo.getGoods_info()}"></td>
                                         </tr>
                                         </tbody>
                                     </table>

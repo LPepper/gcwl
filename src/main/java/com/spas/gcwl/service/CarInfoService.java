@@ -13,6 +13,8 @@ public interface CarInfoService {
     int updateCarState( String state,String number);
     int updateCarLocation( String location,String number);
     int updateAllInfo(CarInfo carInfo);
+    CarInfo findCarById( Integer id);
+    int deleteCarById(Integer id);
 
 
 }

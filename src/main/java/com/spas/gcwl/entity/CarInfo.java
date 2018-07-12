@@ -12,8 +12,14 @@ public class CarInfo {
     private Float price;
     private Float price_per_day;
     private String state;
+    private String pic_url;
+    private Integer id;
 
-    public CarInfo(String number, String type, Float length, Float width, Float height, Float carload, String location, String belong, Float price, Float price_per_day, String state) {
+    public CarInfo(){
+
+    }
+
+    public CarInfo(String number, String type, Float length, Float width, Float height, Float carload, String location, String belong, Float price, Float price_per_day, String state, String pic_url) {
         this.number = number;
         this.type = type;
         this.length = length;
@@ -25,6 +31,39 @@ public class CarInfo {
         this.price = price;
         this.price_per_day = price_per_day;
         this.state = state;
+        this.pic_url = pic_url;
+    }
+
+    public CarInfo(String number, String type, Float length, Float width, Float height, Float carload, String location, String belong, Float price, Float price_per_day, String state, String pic_url, Integer id) {
+        this.number = number;
+        this.type = type;
+        this.length = length;
+        this.width = width;
+        this.height = height;
+        this.carload = carload;
+        this.location = location;
+        this.belong = belong;
+        this.price = price;
+        this.price_per_day = price_per_day;
+        this.state = state;
+        this.pic_url = pic_url;
+        this.id = id;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getPic_url() {
+        return pic_url;
+    }
+
+    public void setPic_url(String pic_url) {
+        this.pic_url = pic_url;
     }
 
     public String getNumber() {
