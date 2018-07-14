@@ -4,6 +4,7 @@ import com.spas.gcwl.entity.ProjectInfo;
 import com.spas.gcwl.service.ProjectInfoService;
 import com.spas.gcwl.service.impl.ProjectInfoServiceImpl;
 
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,9 +25,10 @@ public class FillerController {
     @Autowired
     ProjectInfoServiceImpl projectInfoService;
 
-    @GetMapping("/list/{userme}")
-    public ModelAndView showList(@PathVariable("userme") String userme) {
-        List<ProjectInfo> projectInfos = this.projectInfoService.findAllSubmittedProjectInfoByUserme(userme);
+    @GetMapping("/list")
+    public ModelAndView showList() {
+        String username = (String) SecurityUtils.getSubject().getPrincipal();
+        List<ProjectInfo> projectInfos = this.projectInfoService.findAllSubmittedProjectInfoByUserme(username);
 
         ModelAndView modelAndView = new ModelAndView("filler_list.html");
         modelAndView.addObject("projectinfolist", projectInfos);
@@ -34,19 +36,21 @@ public class FillerController {
     }
 
     //业务员提交项目（询价）页面
-    @GetMapping("/add/{userme}")
+    @GetMapping("/add")
     public ModelAndView submitPage() {
+        String username = (String) SecurityUtils.getSubject().getPrincipal();
         ModelAndView modelAndView = new ModelAndView("filler_add");
 
         return modelAndView;
     }
 
-    @PostMapping("/add/{userme}")
-    public ModelAndView submit(ProjectInfo projectInfo,@PathVariable("userme") String userme) throws ParseException {
+    @PostMapping("/add")
+    public ModelAndView submit(ProjectInfo projectInfo) throws ParseException {
+        String username = (String) SecurityUtils.getSubject().getPrincipal();
         ModelAndView modelAndView=new ModelAndView("filler_add");
         String s = "submitted";
         projectInfo.setState(s);
-        projectInfo.setUserme(userme);
+        projectInfo.setUserme(username);
         this.projectInfoService.submitProjectInfo(projectInfo);
         return  modelAndView;
 }
