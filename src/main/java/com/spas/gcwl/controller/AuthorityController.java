@@ -1,10 +1,8 @@
 package com.spas.gcwl.controller;
 
 import com.spas.gcwl.entity.Role;
-import com.spas.gcwl.service.impl.AuthorityServiceImpl;
-import com.spas.gcwl.service.impl.RoleAuthorityServiceImpl;
-import com.spas.gcwl.service.impl.RoleServiceImpl;
-import com.spas.gcwl.service.impl.UserRoleServiceImpl;
+import com.spas.gcwl.entity.User;
+import com.spas.gcwl.service.impl.*;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +15,8 @@ import java.util.List;
 @Controller
 public class AuthorityController {
 
+    @Autowired
+    UserServiceImpl userService;
     @Autowired
     UserRoleServiceImpl userRoleService;
 
@@ -59,9 +59,28 @@ public class AuthorityController {
         }
 
 
-
-
-
         return AuthoritiesList;
+    }
+
+    @RequestMapping(value = "/getUsername")
+    @ResponseBody
+    public String getUsername(){
+        System.out.println("--获取用户名信息--");
+        String username = (String) SecurityUtils.getSubject().getPrincipal();
+
+        return username;
+
+
+    }
+    @RequestMapping(value = "/getuserpicurl")
+    @ResponseBody
+    public String getuserpicurl(){
+        System.out.println("--获取用户头像路径--");
+        String username = (String) SecurityUtils.getSubject().getPrincipal();
+        User user=this.userService.findByName(username);
+
+        return "/"+user.getPic_url();
+
+
     }
 }

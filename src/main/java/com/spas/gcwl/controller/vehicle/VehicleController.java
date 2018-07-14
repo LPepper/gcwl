@@ -133,6 +133,7 @@ public class VehicleController {
     @GetMapping("/detail/{id}")
     public ModelAndView detail(@PathVariable("id") String id){
 
+        ModelAndView modelAndView=new ModelAndView("vehicle_detail");
         //查找车辆
         Integer cid=Integer.valueOf(id);
         CarInfo carInfo=this.carInfoSeivice.findCarById(cid);
@@ -144,11 +145,13 @@ public class VehicleController {
         for(Integer i:proIds){
             projectInfos.add(this.projectInfoService.findProjectInfoById(i));
         }
+        if(projectInfos.size()>0){
+            modelAndView.addObject("projectInfos",projectInfos);
+        }
 
 
-        ModelAndView modelAndView=new ModelAndView("vehicle_detail");
         modelAndView.addObject("carInfo",carInfo);
-        modelAndView.addObject("projectInfos",projectInfos);
+
         modelAndView.addObject("pic_url",carInfo.getPic_url());
 
 

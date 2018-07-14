@@ -96,4 +96,50 @@ public class RoleController {
         return modelAndView;
     }
 
+    //修改角色信息
+    @GetMapping("modification/{id}")
+    public ModelAndView modificationPage(@PathVariable("id") String id){
+        Integer rid=Integer.valueOf(id);
+
+        List<Authority> authorityList=this.authorityService.findAllAuthority();
+        ModelAndView modelAndView=new ModelAndView("role_modification");
+        modelAndView.addObject("authorityList",authorityList);
+
+        Role role=this.roleService.findRoleById(rid);
+
+        modelAndView.addObject("role",role);
+
+
+
+        return modelAndView;
+    }
+
+    //修改角色信息
+    @PostMapping("modification/{id}")
+    public ModelAndView modification(@PathVariable("id") String id,Role role){
+        Integer rid=Integer.valueOf(id);
+
+        role.setId(rid);
+        //修改角色信息
+        this.roleService.updateRoleInfoById(role);
+        //删除之前权限
+        this.roleAuthorityService.deleteByRoleId(rid);
+        //增加权限
+        Set<String> authorities=role.getAuthorities();
+
+        for(String i:authorities){
+            Integer aid=this.authorityService.findIdByTage(i);
+            RoleAuthority roleAuthority=new RoleAuthority(aid,rid);
+
+            this.roleAuthorityService.addRoleAuthority(roleAuthority);
+        }
+
+        List<Authority> authorityList=this.authorityService.findAllAuthority();
+        ModelAndView modelAndView=new ModelAndView("role_modification");
+        modelAndView.addObject("authorityList",authorityList);
+
+
+        return modelAndView;
+    }
+
 }

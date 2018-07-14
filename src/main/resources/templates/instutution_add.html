@@ -104,9 +104,8 @@
         <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i
                 class="fa fa-user fa-lg"></i></a>
             <ul class="dropdown-menu settings-menu dropdown-menu-right">
-                <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-cog fa-lg"></i> Settings</a></li>
-                <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-user fa-lg"></i> Profile</a></li>
-                <li><a class="dropdown-item" href="page-login.html"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
+                <li><a class="dropdown-item" href="/all/selfinfo"><i class="fa fa-user fa-lg"></i> 我的信息</a></li>
+                <li><a class="dropdown-item" href="/login"><i class="fa fa-sign-out fa-lg"></i> 注销</a></li>
             </ul>
         </li>
     </ul>
@@ -116,35 +115,35 @@
 <aside class="app-sidebar">
     <div class="app-sidebar__user"><img class="app-sidebar__user-avatar"
                                         src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg"
-                                        alt="User Image">
+                                        alt="User Image" id="sessionUserPicurl"height="50" width="50">
         <div>
-            <p class="app-sidebar__user-name">John Doe</p>
-            <p class="app-sidebar__user-designation">最高管理员</p>
+            <p class="app-sidebar__user-name" id="sessionUsername">John Doe</p>
+
         </div>
     </div>
     <ul class="app-menu">
         <!-- 系统管理员权限 -->
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
+        <li class="treeview is-expanded" id="admin" style="display: none"><a class="app-menu__item" href="#" data-toggle="treeview"><i
                 class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">账号信息</span><i
                 class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-                <li><a class="treeview-item" href="/admin/add"><i class="icon fa fa-circle-o"></i> 增加账号信息</a>
+                <li><a class="treeview-item active" href="/admin/add"><i class="icon fa fa-circle-o"></i> 增加账号信息</a>
                 </li>
                 <li><a class="treeview-item" href="/admin/list"><i class="icon fa fa-circle-o"></i> 查看账号列表</a></li>
 
             </ul>
         </li>
-        <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i
+        <li class="treeview" id="institution" style="display: none"><a class="app-menu__item" href="#" data-toggle="treeview"><i
                 class="app-menu__icon fa fa-university"></i><span class="app-menu__label">机构信息</span><i
                 class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-                <li><a class="treeview-item active" href="/institution/add"><i class="icon fa fa-circle-o"></i> 增加机构</a>
+                <li><a class="treeview-item" href="/institution/add"><i class="icon fa fa-circle-o"></i> 增加机构</a>
                 </li>
                 <li><a class="treeview-item " href="/institution/list"><i class="icon fa fa-circle-o"></i> 查看机构列表</a></li>
 
             </ul>
         </li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
+        <li class="treeview" id="role" style="display: none"><a class="app-menu__item" href="#" data-toggle="treeview"><i
                 class="app-menu__icon fa fa-users"></i><span class="app-menu__label">职务信息</span><i
                 class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
@@ -155,41 +154,41 @@
             </ul>
         </li>
         <!-- 车辆管理员权限 -->
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
+        <li class="treeview" id="vehicle" style="display: none"><a class="app-menu__item" href="#" data-toggle="treeview"><i
                 class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">车辆信息</span><i
                 class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-                <li><a class="treeview-item" href="vehicle_add.html"><i class="icon fa fa-circle-o"></i>
+                <li><a class="treeview-item" href="/vehicle/add"><i class="icon fa fa-circle-o"></i>
                     增加车辆信息</a></li>
-                <li><a class="treeview-item" href="vehicle_list.html"><i class="icon fa fa-circle-o"></i> 查看车辆列表</a>
+                <li><a class="treeview-item" href="/vehicle/list"><i class="icon fa fa-circle-o"></i> 查看车辆列表</a>
                 </li>
             </ul>
         </li>
-        <li class="treeview"><a class="app-menu__item" href="examine_out_list.html" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span
+        <li class="treeview" id="examine1" style="display: none"><a class="app-menu__item" href="examine_out_list.html" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span
                 class="app-menu__label">回场检查</span><i class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-                <li><a class="treeview-item" href="examine_out_list.html"><i class="icon fa fa-circle-o"></i>回场记录填写</a>
+                <li><a class="treeview-item" href="/examine/in/add"><i class="icon fa fa-circle-o"></i>回场记录填写</a>
                 </li>
-                <li><a class="treeview-item" href="examine_in_list.html"><i class="icon fa fa-circle-o"></i>回场记录列表</a>
+                <li><a class="treeview-item" href="/examine/in/list"><i class="icon fa fa-circle-o"></i>回场记录列表</a>
                 </li>
             </ul>
         </li>
-        <li class="treeview"><a class="app-menu__item" href="examine_out_list.html" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span
+        <li class="treeview" id="examine2" style="display: none"><a class="app-menu__item" href="examine_out_list.html" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span
                 class="app-menu__label">出场检查</span><i class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-                <li><a class="treeview-item" href="examine_out_list.html"><i class="icon fa fa-circle-o"></i>出场纪录填写</a>
+                <li><a class="treeview-item" href="/examine/out/add"><i class="icon fa fa-circle-o"></i>出场纪录填写</a>
                 </li>
-                <li><a class="treeview-item" href="examine_in_list.html"><i class="icon fa fa-circle-o"></i>出场纪录列表</a>
+                <li><a class="treeview-item" href="/examine/out/list"><i class="icon fa fa-circle-o"></i>出场纪录列表</a>
                 </li>
             </ul>
         </li>
-       <!-- 业务管理员权限 -->
-       <li><a class="app-menu__item" href="filler_add.html"><i class="app-menu__icon fa fa-dashboard"></i><span
+        <!-- 业务管理员权限 -->
+        <li id="filler1" style="display: none"><a class="app-menu__item" href="/filler/add"><i class="app-menu__icon fa fa-dashboard"></i><span
                 class="app-menu__label">发布项目</span></a></li>
-        <li><a class="app-menu__item" href="filler_list.html"><i class="app-menu__icon fa fa-th-list"></i><span
+        <li id="filler2" style="display: none"><a class="app-menu__item" href="/filler/list"><i class="app-menu__icon fa fa-th-list"></i><span
                 class="app-menu__label">我的项目</span></a></li>
         <!-- 项目管理员权限 -->
-        <li><a class="app-menu__item" href="manager_list.html"><i class="app-menu__icon fa fa-th-list"></i><span
+        <li id="manager" style="display: none"><a class="app-menu__item" href="/manager/list"><i class="app-menu__icon fa fa-th-list"></i><span
                 class="app-menu__label">项目列表</span></a></li>
     </ul>
     </li>
@@ -250,6 +249,79 @@
 <script src="/js/plugins/pace.min.js"></script>
 <!-- Page specific javascripts-->
 <!-- Google analytics script-->
+<script type="text/javascript">
+    judgeAuthority();
+
+    function judgeAuthority() {
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/getAuthorities",
+            contentType: 'application/json;charset=utf-8',
+            success: function (data) {
+                //alert("nihao");
+
+                for(var i=0;i<data.length;i++){
+                    if(data[i]=="用户信息管理"){
+                        document.getElementById("admin").style.display="inline";//显
+                        document.getElementById("role").style.display="inline";
+                    }
+                    if(data[i]=="车辆信息管理"){
+                        document.getElementById("vehicle").style.display="inline";//显
+                    }
+                    if(data[i]=="机构管理"){
+                        document.getElementById("institution").style.display="inline";//显
+                    }
+                    if(data[i]=="车辆检查记录管理"){
+                        document.getElementById("examine1").style.display="inline";//显
+                        document.getElementById("examine2").style.display="inline";
+                    }
+                    if(data[i]=="项目询价"){
+                        document.getElementById("filler1").style.display="inline";//显
+                        document.getElementById("filler2").style.display="inline";
+                    }
+                    if(data[i]=="项目执行"){
+                        document.getElementById("manager").style.display="inline";//显
+                    }
+                    if(data[i]=="项目报价"){
+                        document.getElementById("manager").style.display="inline";//显
+                    }
+                }
+            }
+        })
+    }
+</script>
+<script type="text/javascript">
+    GetUsername();
+
+    function GetUsername() {
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/getUsername",
+            contentType: 'application/json;charset=utf-8',
+            success: function (data) {
+
+                $("#sessionUsername").text(data);
+
+            }
+        })
+    }
+</script>
+<script type="text/javascript">
+    GetUsername();
+
+    function GetUsername() {
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/getuserpicurl",
+            contentType: 'application/json;charset=utf-8',
+            success: function (data) {
+
+                $('#sessionUserPicurl').attr('src',data);
+
+            }
+        })
+    }
+</script>
 <script type="text/javascript">
     if (document.location.hostname == 'pratikborsadiya.in') {
         (function (i, s, o, g, r, a, m) {

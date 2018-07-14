@@ -11,4 +11,5 @@ public interface RoleService {
     List<Role> findAllRole();
     int deleteRoleByid(Integer id);
     Integer findIdByName(String role_name);
+    int updateRoleInfoById(Role role);
 }

@@ -197,12 +197,12 @@
 <main class="app-content">
     <div class="app-title">
         <div>
-            <h1><i class="fa fa-edit"></i> 修改机构信息</h1>
+            <h1><i class="fa fa-edit"></i> 增加职务</h1>
             <!--p>Bootstrap default form components</p-->
         </div>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item">机构信息</li>
+            <li class="breadcrumb-item">职务信息</li>
             <!--li class="breadcrumb-item"><a href="#">Form Components</a></li-->
         </ul>
     </div>
@@ -214,21 +214,22 @@
                     <div class="col-lg-4">
                         <form method="post">
                             <div class="form-group">
-                                <fieldset disabled="">
-                                <label class="col-form-label" for="orgname">机构名</label>
-                                <input class="form-control" id="orgname" name="name" type="text" th:value="${orgname}" disabled="">
-                                </fieldset>
+                                <label class="col-form-label" for="rolename" >职务名</label>
+                                <input class="form-control" id="rolename" name="role_name" type="text"  th:value="${role.getRole_name()}">
                             </div>
                             <div class="form-group">
-                                <label class="col-form-label" for="phone_number">联系电话</label>
-                                <input class="form-control" id="phone_number" name="phone" type="text" placeholder="联系电话">
+                                <label for="resAdd">权限选择</label>
+                                <select class="form-control" id="resAdd" name="authorities" multiple="multiple" >
+                                    <option th:each="authority:${authorityList}" th:text="${authority.getAuthority_tag()}" th:value="${authority.getAuthority_tag()}"></option>
+
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label class="col-form-label" for="orgAddr">机构地址</label>
-                                <input class="form-control" id="orgAddr" name="address" type="text" placeholder="请填写机构详细地址">
+                                <label for="roleDescription">职务描述</label>
+                                <textarea class="form-control" id="roleDescription" name="role_description" rows="3" th:placeholder="${role.getRole_description()}"></textarea>
                             </div>
                             <div class="tile-footer">
-                                <button class="btn btn-primary" type="submit">确认修改</button>
+                                <button class="btn btn-primary" type="submit">提交</button>
                             </div>
                         </form>
 
@@ -350,12 +351,16 @@
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
-                orgname: {
+                rolename: {
                     validators: {
                         notEmpty: {
-                            message: '机构名不能为空'
+                            message: '职务名不能为空'
                         },
-                    
+                    stringLength:{
+                            min:2,
+                            max:16,
+                            message:' 职务名长度必须为2到8位'
+                        },
                 },
             }
         });
