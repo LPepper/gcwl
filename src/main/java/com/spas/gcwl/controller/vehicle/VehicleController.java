@@ -129,7 +129,7 @@ public class VehicleController {
     }
 
 
-    //TODO
+
     @GetMapping("/detail/{id}")
     public ModelAndView detail(@PathVariable("id") String id){
 
@@ -189,8 +189,7 @@ public class VehicleController {
         Integer cid=Integer.valueOf(id);
         CarInfo preCarInfo =this.carInfoSeivice.findCarById(cid);
         carInfo.setId(cid);
-        //设置车辆状态
-        carInfo.setState("空闲");
+
 
         String []a=carTp.split("\\*");
         //设置长宽高信息
