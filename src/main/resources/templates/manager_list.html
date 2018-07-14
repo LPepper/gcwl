@@ -151,6 +151,7 @@
                             <th>出发地</th>
                             <th>终点地</th>
                             <th>项目状态</th>
+                            <th>完成项目</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -161,6 +162,7 @@
                             <td th:text="${project.getBlocation()}"></td>
                             <td th:text="${project.getElocation()}"></td>
                             <td th:text="${project.getState()}"></td>
+                            <td><a th:text="完成" th:href="@{'/manager/commit/'+${project.getProject_id()}}"></a> </td>
                         </tr>
                         </tbody>
                     </table>

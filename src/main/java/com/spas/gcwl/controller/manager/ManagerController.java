@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -88,6 +89,15 @@ public class ManagerController {
         carInfoSeivice.updateCarState("选中",number);
         ModelAndView modelAndView=new ModelAndView("forward:/manager/list");
         return  modelAndView;
+    }
+
+    @GetMapping("/commit/{project_id}")
+    public ModelAndView commit(@PathVariable("project_id") Integer project_id){
+        ModelAndView modelAndView=new ModelAndView("forward:/manager/list");
+        Date d=new Date(System.currentTimeMillis());
+        ProjectInfo projectInfo=new ProjectInfo(project_id,d,"committed");
+        projectInfoService.commitProjectInfoById(projectInfo);
+        return modelAndView;
     }
 
 }
