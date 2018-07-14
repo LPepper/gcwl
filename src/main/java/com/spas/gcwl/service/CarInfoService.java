@@ -8,6 +8,7 @@ import java.util.List;
 public interface CarInfoService {
     int addCarInfo(CarInfo carInfo);
     List<CarInfo> findAllCarInfo();
+    List<CarInfo> findFreeCars();
     CarInfo findCarByNumber( String number);
     int deleteCarByNumber( String number);
     int updateCarState( String state,String number);

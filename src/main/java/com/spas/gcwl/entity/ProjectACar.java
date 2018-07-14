@@ -10,6 +10,9 @@ public class ProjectACar {
         this.project_id = project_id;
     }
 
+    public ProjectACar() {
+    }
+
     public Integer getId() {
         return id;
     }

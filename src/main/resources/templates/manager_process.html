@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th=”http://www.thymeleaf.org>
 <head>
     <meta name="description"
           content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
@@ -20,10 +20,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Main CSS-->
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css"
           href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrapValidator.min.css">
 </head>
 <body class="app sidebar-mini rtl">
 <!-- Navbar-->
@@ -180,8 +181,10 @@
                 <section class="invoice">
                     <div class="bs-component">
                         <div class="jumbotron">
-                            <h1 class="display-3">当前项目状态 已提交</h1>
-                            <p>201806061234</p>
+                            <h1 class="display-3">当前项目状态:</h1>
+                            <h1 class="display-3" th:text="${detail.getState()}"></h1>
+                            <p>项目编号</p>
+                            <p th:text="${detail.getProject_id()}"></p>
                         </div>
                     </div>
                     <div class="bs-component">
@@ -198,7 +201,7 @@
                         <div class="col-4 table-responsive">
                             <div class="bs-component">
                                 <ol class="breadcrumb">
-                                    <li>出发日期</li>
+                                    <li>日期</li>
                                 </ol>
                                 <ol class="breadcrumb">
                                     <li>出发地</li>
@@ -207,10 +210,7 @@
                                     <li>终点地</li>
                                 </ol>
                                 <ol class="breadcrumb">
-                                    <li>货物重量（单位：吨）</li>
-                                </ol>
-                                <ol class="breadcrumb">
-                                    <li>货物规格（单位：米*米*米）</li>
+                                    <li>货物信息</li>
                                 </ol>
                             </div>
 
@@ -218,19 +218,16 @@
                         <div class="col-8 table-responsive">
                             <div class="bs-component">
                                 <ol class="breadcrumb">
-                                    <li>2018-06-08</li>
+                                    <li th:text="${detail.getBdate()}"></li>
                                 </ol>
                                 <ol class="breadcrumb">
-                                    <li>成都</li>
+                                    <li th:text="${detail.getBlocation()}"></li>
                                 </ol>
                                 <ol class="breadcrumb">
-                                    <li>重庆</li>
+                                    <li th:text="${detail.getElocation()}"></li>
                                 </ol>
                                 <ol class="breadcrumb">
-                                    <li>1.0</li>
-                                </ol>
-                                <ol class="breadcrumb">
-                                    <li>3*4*5</li>
+                                    <li th:text="${detail.getGoods_info()}"></li>
                                 </ol>
                             </div>
                         </div>
@@ -246,53 +243,61 @@
                                         <button class="btn btn-primary dropdown-toggle" id="btnGroupDrop1" type="button"
                                                 data-toggle="dropdown" aria-haspopup="true"
                                                 aria-expanded="false"></button>
-                                        <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item"
-                                                                                          href="#">外委分包</a><a
-                                                class="dropdown-item" href="#">自行执行</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--div class="col-lg-4">
-                        <div class="form-group">
-                             <label for="exampleSelect1">可选车辆</label>
-                             <select class="form-control" id="exampleSelect1">
-                               <option>1 (定价：3000元）</option>
-                               <option>2 (定价：4000元）</option>
-                               <option>3 (定价：3000元）</option>
-                               <option>4 (定价：3000元）</option>
-                               <option>5 (定价：3000元）</option>
-                             </select>
-                         </div>
-                         </div-->
-                        <div class="col-lg-4">
-                            <div class="form-group">
-                                <label class="control-label">报价</label>
-                                <div class="form-group">
-                                    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend"><span class="input-group-text">¥</span></div>
-                                        <input class="form-control" id="exampleInputAmount" type="text"
-                                               placeholder="Amount">
-                                        <div class="input-group-append"><span class="input-group-text">.00</span></div>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" th:href="@{'/manager/offer/'+ ${detail.getProject_id()}}">外委分包</a>
+                                            <a class="dropdown-item" th:href="@{'/manager/offer2/'+ ${detail.getProject_id()}}">自行执行</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-            </div>
+
+
+         <form method="post">
+             <!--div class="col-lg-4">
+                 <div class="form-group">
+                     <label for="exampleSelect1">可选车辆</label>
+                     <select class="form-control" id="exampleSelect1">
+                         <option>1 (定价：3000元）</option>
+                         <option>2 (定价：4000元）</option>
+                         <option>3 (定价：3000元）</option>
+                         <option>4 (定价：3000元）</option>
+                         <option>5 (定价：3000元）</option>
+                     </select>
+                 </div>
+             </div-->
+             <div class="col-lg-4">
+                 <div class="form-group">
+                     <label class="control-label">报价</label>
+                     <div class="form-group">
+                         <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                         <div class="input-group">
+                             <div class="input-group-prepend"><span class="input-group-text">¥</span></div>
+                             <input class="form-control" id="exampleInputAmount" name="offer" type="text"
+                                               placeholder="Amount">
+                             <div class="input-group-append"><span class="input-group-text">.00</span></div>
+                         </div>
+                     </div>
+                     <div class="tile-footer">
+                         <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i> 提交报价
+                         </button>&nbsp;&nbsp;&nbsp;
+                     </div>
+                 </div>
+             </div>
+         </form>
             </section>
         </div>
     </div>
     </div>
 </main>
 <!-- Essential javascripts for application to work-->
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/main.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
 <!-- The javascript plugin to display page loading on top-->
-<script src="js/plugins/pace.min.js"></script>
+<script src="/js/plugins/pace.min.js"></script>
 <!-- Page specific javascripts-->
 <!-- Google analytics script-->
 <script type="text/javascript">

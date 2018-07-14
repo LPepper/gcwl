@@ -60,7 +60,8 @@ public class CarInfoSeiviceImpl implements CarInfoService {
     }
 
 
-
-
-
+    @Override
+    public List<CarInfo> findFreeCars() {
+        return carInfoMapper.findFreeCars();
+    }
 }

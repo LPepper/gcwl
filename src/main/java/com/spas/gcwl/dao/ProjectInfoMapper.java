@@ -15,7 +15,7 @@ public interface ProjectInfoMapper {
 
     @Select("select * from ProjectInfo where userme=#{userme}")
     List<ProjectInfo> findAllSubmittedProjectInfoByUserme(String userme);
-    @Select("select * from ProjectInfo where state='submitted'")
+    @Select("select * from ProjectInfo")
     List<ProjectInfo> findAllSubmittedProjectInfo();
     @Select("select * from ProjectInfo where handler_username=#{handler_username}")
     List<ProjectInfo> findAllProcessedProjectInfoByHandler(String handler_username);

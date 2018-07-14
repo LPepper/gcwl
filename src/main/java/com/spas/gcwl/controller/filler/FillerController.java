@@ -34,18 +34,19 @@ public class FillerController {
     }
 
     //业务员提交项目（询价）页面
-    @GetMapping("/add")
+    @GetMapping("/add/{userme}")
     public ModelAndView submitPage() {
         ModelAndView modelAndView = new ModelAndView("filler_add");
 
         return modelAndView;
     }
 
-    @PostMapping("/add")
-    public ModelAndView submit(ProjectInfo projectInfo) throws ParseException {
+    @PostMapping("/add/{userme}")
+    public ModelAndView submit(ProjectInfo projectInfo,@PathVariable("userme") String userme) throws ParseException {
         ModelAndView modelAndView=new ModelAndView("filler_add");
         String s = "submitted";
         projectInfo.setState(s);
+        projectInfo.setUserme(userme);
         this.projectInfoService.submitProjectInfo(projectInfo);
         return  modelAndView;
 }
