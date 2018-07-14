@@ -43,13 +43,13 @@ public class ExamineController {
     }
 
 
-    @GetMapping("/in/add1")
+    @GetMapping("/in/add")
     public ModelAndView inAddPage()
     {
         ModelAndView modelAndView=new ModelAndView("examine_in_detail");
         return modelAndView;
     }
-    @PostMapping("/in/add1")
+    @PostMapping("/in/add")
     public ModelAndView inAddT(TechCheckInfo techCheckInfo){
         ModelAndView modelAndView=new ModelAndView("forward:/examine/in/add2");
         teckCheckInfoService.addTeckCheckInfo(techCheckInfo);
@@ -73,12 +73,12 @@ public class ExamineController {
         return modelAndView;
     }
 
-    @RequestMapping("/out/add1")
+    @RequestMapping("/out/add")
     public ModelAndView outAddPageT(){
         ModelAndView modelAndView=new ModelAndView("examine_out_detail");
         return modelAndView;
     }
-    @PostMapping("/out/add1")
+    @PostMapping("/out/add")
     public ModelAndView outAddT(TechCheckInfo techCheckInfo){
         ModelAndView modelAndView=new ModelAndView("forward:/examine/out/add2");
         if(techCheckInfo.getBrake_check()!="正常" || techCheckInfo.getDash_board_check()!="正常"|| techCheckInfo.getSteer_check()!="正常"|| techCheckInfo.getTransmission_check()!="正常") carInfoSeivice.updateToFixByNumber(techCheckInfo.getNumber());
