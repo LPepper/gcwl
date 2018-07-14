@@ -81,6 +81,11 @@ public class CarInfoSeiviceImpl implements CarInfoService {
     }
 
     @Override
+    public String findCarStateByNumber(String number) {
+        return carInfoMapper.findCarStateByNumber(number);
+    }
+
+    @Override
     public int updateToFixByNumber(String number) {
         return carInfoMapper.updateToFixByNumber(number);
     }

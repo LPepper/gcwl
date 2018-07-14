@@ -17,4 +17,7 @@ public interface ProjectACarMapper {
     List<String> findNumberByProject_id(Integer project_id);
     @Select("select project_id from ProjectACar where number=#{number}")
     List<Integer> findProject_idByNumber(String number);
+
+    @Select("select project_id from ProjectACar where number=#{number}")
+    Integer findAProject_idByNumber(String number);
 }

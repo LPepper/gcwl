@@ -20,6 +20,7 @@ public interface CarInfoService {
     int updateToFreeByNumber(String number);
     int updateToUseByNumber(String number);
     int updateToFixByNumber(String number);
+    String findCarStateByNumber(String number);
 
 
 }

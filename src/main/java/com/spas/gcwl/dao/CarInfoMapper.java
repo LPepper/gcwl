@@ -20,11 +20,13 @@ public interface CarInfoMapper {
     @Select("select * from Carinfo")
     List<CarInfo> findAllCarInfo();
 
-    @Select("select * from Carinfo where state='空闲'")
+    @Select("select * from Carinfo where state='空闲' or state='使用'")
     List<CarInfo> findFreeCars();
     @Select("select * from Carinfo where state='选中'")
     List<CarInfo> findSelectedCars();
 
+    @Select("select state from Carinfo where number=#{number}")
+    String findCarStateByNumber(String number);
     @Select("select * from Carinfo where number=#{number}")
     CarInfo findCarByNumber(@Param("number") String number);
 

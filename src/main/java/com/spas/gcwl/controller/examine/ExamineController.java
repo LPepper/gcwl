@@ -1,12 +1,9 @@
 package com.spas.gcwl.controller.examine;
 
 
-import com.spas.gcwl.entity.CarInfo;
-import com.spas.gcwl.entity.ECheckInfo;
-import com.spas.gcwl.entity.TechCheckInfo;
-import com.spas.gcwl.service.impl.CarInfoSeiviceImpl;
-import com.spas.gcwl.service.impl.ECheckInfoServiceImpl;
-import com.spas.gcwl.service.impl.TeckCheckInfoServiceImpl;
+import com.spas.gcwl.entity.*;
+import com.spas.gcwl.service.ProjectACarService;
+import com.spas.gcwl.service.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +23,10 @@ public class ExamineController {
     ECheckInfoServiceImpl eCheckInfoService;
     @Autowired
     CarInfoSeiviceImpl carInfoSeivice;
+    @Autowired
+    ProjectACarImpl projectACarService;
+    @Autowired
+    ProjectInfoServiceImpl projectInfoService;
 
     @RequestMapping("/in/list")
     public ModelAndView inList(){
@@ -55,6 +56,8 @@ public class ExamineController {
         teckCheckInfoService.addTeckCheckInfo(techCheckInfo);
         if(techCheckInfo.getBrake_check()!="正常" || techCheckInfo.getDash_board_check()!="正常"|| techCheckInfo.getSteer_check()!="正常"|| techCheckInfo.getTransmission_check()!="正常")
             carInfoSeivice.updateToFixByNumber(techCheckInfo.getNumber());
+        ProjectInfo projectInfo=new ProjectInfo(projectACarService.findAProject_idByNumber(techCheckInfo.getNumber()),techCheckInfo.getDate(),"committed");
+        projectInfoService.commitProjectInfoById(projectInfo);
         return modelAndView;
     }
     @GetMapping("/in/add2")
@@ -69,7 +72,7 @@ public class ExamineController {
         eCheckInfoService.addECheckInfo(eCheckInfo);
         if(eCheckInfo.getAuto_fire_ex_check()!="正常" || eCheckInfo.getBelt_check()!="正常" || eCheckInfo.getBox_check()!="正常" || eCheckInfo.getCar_mark_check()!="正常" || eCheckInfo.getFire_extinguisher_check()!="正常" || eCheckInfo.getHammer_check()!="正常"|| eCheckInfo.getLight_check()!="正常" || eCheckInfo.getNotice_board_check()!="正常"|| eCheckInfo.getProtection_check()!="正常"|| eCheckInfo.getRecorder_check()!="正常"|| eCheckInfo.getReflecting_mark_check()!="正常")
             carInfoSeivice.updateToFixByNumber(eCheckInfo.getNumber());
-        carInfoSeivice.updateToFreeByNumber(eCheckInfo.getNumber());
+        else carInfoSeivice.updateToFreeByNumber(eCheckInfo.getNumber());
         return modelAndView;
     }
 
@@ -97,7 +100,14 @@ public class ExamineController {
         eCheckInfoService.addECheckInfo(eCheckInfo);
         if(eCheckInfo.getAuto_fire_ex_check()!="正常" || eCheckInfo.getBelt_check()!="正常" || eCheckInfo.getBox_check()!="正常" || eCheckInfo.getCar_mark_check()!="正常" || eCheckInfo.getFire_extinguisher_check()!="正常" || eCheckInfo.getHammer_check()!="正常"|| eCheckInfo.getLight_check()!="正常" || eCheckInfo.getNotice_board_check()!="正常"|| eCheckInfo.getProtection_check()!="正常"|| eCheckInfo.getRecorder_check()!="正常"|| eCheckInfo.getReflecting_mark_check()!="正常")
             carInfoSeivice.updateToFixByNumber(eCheckInfo.getNumber());
-        carInfoSeivice.updateToUseByNumber(eCheckInfo.getNumber());
+        else carInfoSeivice.updateToUseByNumber(eCheckInfo.getNumber());
+        if (carInfoSeivice.findCarStateByNumber(eCheckInfo.getNumber())=="维修"){
+            ProjectInfo projectInfo=new ProjectInfo(projectACarService.findAProject_idByNumber(eCheckInfo.getNumber()),eCheckInfo.getDate(),"reprocess");
+            projectInfoService.reprocessProjectInfoById(projectACarService.findAProject_idByNumber(eCheckInfo.getNumber()));
+        }
+        else{
+            projectInfoService.processingProjectInfoById(projectACarService.findAProject_idByNumber(eCheckInfo.getNumber()));
+        }
         return modelAndView;
     }
 
