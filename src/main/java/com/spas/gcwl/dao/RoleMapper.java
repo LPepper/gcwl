@@ -22,6 +22,8 @@ public interface RoleMapper {
     @Select("select * from Role ")
     List<Role> findAllRole();
 
+    @Update("update Role set role_description=#{role_description},role_name=#{role_name}  where id=#{id}")
+    int updateRoleInfoById(Role role);
 
 
     @Delete("delete from Role where id=#{id}")

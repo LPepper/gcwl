@@ -9,6 +9,8 @@ import com.spas.gcwl.service.impl.OrganizationServiceImpl;
 import com.spas.gcwl.service.impl.RoleServiceImpl;
 import com.spas.gcwl.service.impl.UserRoleServiceImpl;
 import com.spas.gcwl.service.impl.UserServiceImpl;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -44,6 +46,7 @@ public class AdminController {
 
     //增加用户界面
     @GetMapping("/add")
+    @RequiresPermissions(value="用户信息管理")
     public ModelAndView addAdminPage(){
 
         List<Organization> organizations=this.organizationService.findAllOrganization();

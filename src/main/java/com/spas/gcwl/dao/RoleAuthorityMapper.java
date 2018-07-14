@@ -17,7 +17,7 @@ public interface RoleAuthorityMapper {
     int addRoleAuthority(RoleAuthority roleAuthority);
 
     @Select("select id from RoleAuthority where Role_id=#{Role_id}")
-    Integer findAuthorityByRoleId(@Param("Role_id") Integer Role_id );
+    List<Integer> findAuthorityByRoleId(@Param("Role_id") Integer Role_id );
 
     @Delete("delete from RoleAuthority where id=#{id} and Role_id=#{Role_id}")
     int deleteColums(RoleAuthority roleAuthority);

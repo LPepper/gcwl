@@ -9,6 +9,15 @@ public class Role {
     private String role_description;
 
     private Set<String> authorities;
+    private String authorityName;
+
+    public String getAuthorityName() {
+        return authorityName;
+    }
+
+    public void setAuthorityName(String authorityName) {
+        this.authorityName = authorityName;
+    }
 
     public Role(){
 

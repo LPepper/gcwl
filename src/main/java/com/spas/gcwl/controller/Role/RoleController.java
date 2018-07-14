@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 @RequestMapping("/role")
@@ -33,8 +32,25 @@ public class RoleController {
     public ModelAndView showlist(){
 
         List<Role> roleList=this.roleService.findAllRole();
+
+        //List<String> authorityList=new ArrayList<>();
+        Map<Role,String> map=new HashMap<Role,String>();
+        //查找角色对应的权限字符串
+        for(Role role:roleList){
+            List<Integer> authorityId=this.roleAuthorityService.findAuthorityByRoleId(role.getId());
+            String authorityName="";
+            for(Integer aid:authorityId){
+                authorityName+=this.authorityService.findAuthorityById(aid);
+                authorityName+=" ";
+
+            }
+            role.setAuthorityName(authorityName);
+        }
+
+
         ModelAndView modelAndView=new ModelAndView("role_list");
         modelAndView.addObject("rolelist",roleList);
+        modelAndView.addObject("map",map);
 
         return modelAndView;
     }
@@ -77,6 +93,52 @@ public class RoleController {
         this.roleAuthorityService.deleteByRoleId(rid);
 
         ModelAndView modelAndView=new ModelAndView("forward:/role/list");
+        return modelAndView;
+    }
+
+    //修改角色信息
+    @GetMapping("modification/{id}")
+    public ModelAndView modificationPage(@PathVariable("id") String id){
+        Integer rid=Integer.valueOf(id);
+
+        List<Authority> authorityList=this.authorityService.findAllAuthority();
+        ModelAndView modelAndView=new ModelAndView("role_modification");
+        modelAndView.addObject("authorityList",authorityList);
+
+        Role role=this.roleService.findRoleById(rid);
+
+        modelAndView.addObject("role",role);
+
+
+
+        return modelAndView;
+    }
+
+    //修改角色信息
+    @PostMapping("modification/{id}")
+    public ModelAndView modification(@PathVariable("id") String id,Role role){
+        Integer rid=Integer.valueOf(id);
+
+        role.setId(rid);
+        //修改角色信息
+        this.roleService.updateRoleInfoById(role);
+        //删除之前权限
+        this.roleAuthorityService.deleteByRoleId(rid);
+        //增加权限
+        Set<String> authorities=role.getAuthorities();
+
+        for(String i:authorities){
+            Integer aid=this.authorityService.findIdByTage(i);
+            RoleAuthority roleAuthority=new RoleAuthority(aid,rid);
+
+            this.roleAuthorityService.addRoleAuthority(roleAuthority);
+        }
+
+        List<Authority> authorityList=this.authorityService.findAllAuthority();
+        ModelAndView modelAndView=new ModelAndView("role_modification");
+        modelAndView.addObject("authorityList",authorityList);
+
+
         return modelAndView;
     }
 
