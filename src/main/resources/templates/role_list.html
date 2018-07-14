@@ -221,20 +221,12 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>账号管理员</td>
-                            <td>账号信息</td>
-                            <td>管理所有账号</td>
-                            <td>
-                                <button class="btn btn-primary" type="button">更改权限</button>
-                                <button class="btn btn-primary" type="button">删除</button>
-                            </td>
-                        </tr>
+
 
                         <tr th:each="role:${rolelist}">
-                            <td th:text="${role.getRole_name()}">账号管理员</td>
-                            <td>账号信息</td>
-                            <td th:text="${role.getRole_description()}">管理所有账号</td>
+                            <td th:text="${role.getRole_name()}"></td>
+                            <td th:text="${role.getAuthorityName()}"></td>
+                            <td th:text="${role.getRole_description()}"></td>
                             <td>
                                 <button class="btn btn-primary" type="button">更改权限</button>
                                 <a th:href="@{'/role/delete/'+${role.getId()}}"><button class="btn btn-primary" type="button">删除</button></a>

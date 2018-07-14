@@ -21,7 +21,7 @@ public class RoleAuthorityServiceImpl implements RoleAuthorityService {
     }
 
     @Override
-    public Integer findAuthorityByRoleId(Integer Role_id) {
+    public List<Integer> findAuthorityByRoleId(Integer Role_id) {
         return this.roleAuthorityMapper.findAuthorityByRoleId(Role_id);
     }
 

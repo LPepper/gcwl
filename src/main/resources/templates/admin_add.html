@@ -25,6 +25,9 @@
     <link rel="stylesheet" type="text/css"
           href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/css/bootstrapValidator.min.css">
+
+
+
 </head>
 <body class="app sidebar-mini rtl">
 <!-- Navbar-->
@@ -124,7 +127,7 @@
     </div>
     <ul class="app-menu">
         <!-- 系统管理员权限 -->
-        <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i
+        <li class="treeview is-expanded" id="admin" style="display: none"><a class="app-menu__item" href="#" data-toggle="treeview"><i
                 class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">账号信息</span><i
                 class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
@@ -134,7 +137,7 @@
 
             </ul>
         </li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
+        <li class="treeview" id="institution" style="display: none"><a class="app-menu__item" href="#" data-toggle="treeview"><i
                 class="app-menu__icon fa fa-university"></i><span class="app-menu__label">机构信息</span><i
                 class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
@@ -144,7 +147,7 @@
 
             </ul>
         </li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
+        <li class="treeview" id="role" style="display: none"><a class="app-menu__item" href="#" data-toggle="treeview"><i
                 class="app-menu__icon fa fa-users"></i><span class="app-menu__label">职务信息</span><i
                 class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
@@ -155,17 +158,17 @@
             </ul>
         </li>
         <!-- 车辆管理员权限 -->
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
+        <li class="treeview" id="vehicle" style="display: none"><a class="app-menu__item" href="#" data-toggle="treeview"><i
                 class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">车辆信息</span><i
                 class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-                <li><a class="treeview-item" href="vehicle_add.html"><i class="icon fa fa-circle-o"></i>
+                <li><a class="treeview-item" href="/vehicle/add"><i class="icon fa fa-circle-o"></i>
                     增加车辆信息</a></li>
-                <li><a class="treeview-item" href="vehicle_list.html"><i class="icon fa fa-circle-o"></i> 查看车辆列表</a>
+                <li><a class="treeview-item" href="/vehicle/list"><i class="icon fa fa-circle-o"></i> 查看车辆列表</a>
                 </li>
             </ul>
         </li>
-        <li class="treeview"><a class="app-menu__item" href="examine_out_list.html" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span
+        <li class="treeview" id="examine1" style="display: none"><a class="app-menu__item" href="examine_out_list.html" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span
                 class="app-menu__label">回场检查</span><i class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
                 <li><a class="treeview-item" href="examine_out_list.html"><i class="icon fa fa-circle-o"></i>回场记录填写</a>
@@ -174,7 +177,7 @@
                 </li>
             </ul>
         </li>
-        <li class="treeview"><a class="app-menu__item" href="examine_out_list.html" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span
+        <li class="treeview" id="examine2" style="display: none"><a class="app-menu__item" href="examine_out_list.html" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span
                 class="app-menu__label">出场检查</span><i class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
                 <li><a class="treeview-item" href="examine_out_list.html"><i class="icon fa fa-circle-o"></i>出场纪录填写</a>
@@ -184,12 +187,12 @@
             </ul>
         </li>
        <!-- 业务管理员权限 -->
-       <li><a class="app-menu__item" href="filler_add.html"><i class="app-menu__icon fa fa-dashboard"></i><span
+       <li id="filler1" style="display: none"><a class="app-menu__item" href="filler_add.html"><i class="app-menu__icon fa fa-dashboard"></i><span
                 class="app-menu__label">发布项目</span></a></li>
-        <li><a class="app-menu__item" href="filler_list.html"><i class="app-menu__icon fa fa-th-list"></i><span
+        <li id="filler2" style="display: none"><a class="app-menu__item" href="filler_list.html"><i class="app-menu__icon fa fa-th-list"></i><span
                 class="app-menu__label">我的项目</span></a></li>
         <!-- 项目管理员权限 -->
-        <li><a class="app-menu__item" href="manager_list.html"><i class="app-menu__icon fa fa-th-list"></i><span
+        <li id="manager" style="display: none"><a class="app-menu__item" href="manager_list.html"><i class="app-menu__icon fa fa-th-list"></i><span
                 class="app-menu__label">项目列表</span></a></li>
     </ul>
     </li>
@@ -267,6 +270,47 @@
 <!-- Page specific javascripts-->
 <!-- Google analytics script-->
 <script type="text/javascript">
+    judgeAuthority();
+
+    function judgeAuthority() {
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/getAuthorities",
+            contentType: 'application/json;charset=utf-8',
+            success: function (data) {
+                //alert("nihao");
+
+                for(var i=0;i<data.length;i++){
+                    if(data[i]=="用户信息管理"){
+                        document.getElementById("admin").style.display="inline";//显
+                        document.getElementById("role").style.display="inline";
+                    }
+                    if(data[i]=="车辆信息管理"){
+                        document.getElementById("vehicle").style.display="inline";//显
+                    }
+                    if(data[i]=="机构管理"){
+                        document.getElementById("institution").style.display="inline";//显
+                    }
+                    if(data[i]=="车辆检查记录管理"){
+                        document.getElementById("examine1").style.display="inline";//显
+                        document.getElementById("examine2").style.display="inline";
+                    }
+                    if(data[i]=="项目询价"){
+                        document.getElementById("filler1").style.display="inline";//显
+                        document.getElementById("filler2").style.display="inline";
+                    }
+                    if(data[i]=="项目执行"){
+                        document.getElementById("manager").style.display="inline";//显
+                    }
+                    if(data[i]=="项目报价"){
+                        document.getElementById("manager").style.display="inline";//显
+                    }
+                }
+            }
+        })
+    }
+</script>
+<script type="text/javascript">
     if (document.location.hostname == 'pratikborsadiya.in') {
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
@@ -328,6 +372,9 @@
             }
         });
     });
+
+
 </script>
+
 </body>
 </html>

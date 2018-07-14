@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 @RequestMapping("/role")
@@ -33,8 +32,25 @@ public class RoleController {
     public ModelAndView showlist(){
 
         List<Role> roleList=this.roleService.findAllRole();
+
+        //List<String> authorityList=new ArrayList<>();
+        Map<Role,String> map=new HashMap<Role,String>();
+        //查找角色对应的权限字符串
+        for(Role role:roleList){
+            List<Integer> authorityId=this.roleAuthorityService.findAuthorityByRoleId(role.getId());
+            String authorityName="";
+            for(Integer aid:authorityId){
+                authorityName+=this.authorityService.findAuthorityById(aid);
+                authorityName+=" ";
+
+            }
+            role.setAuthorityName(authorityName);
+        }
+
+
         ModelAndView modelAndView=new ModelAndView("role_list");
         modelAndView.addObject("rolelist",roleList);
+        modelAndView.addObject("map",map);
 
         return modelAndView;
     }
