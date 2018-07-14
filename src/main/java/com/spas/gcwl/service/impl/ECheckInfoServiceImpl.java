@@ -19,7 +19,7 @@ public class ECheckInfoServiceImpl implements ECheckInfoService {
     }
 
     @Override
-    public List<ECheckInfo> findByCarNumAndType(String number, Integer type) {
+    public List<ECheckInfo> findByCarNumAndType(String number, String type) {
         return this.eCheckInfoMapper.findByCarNumAndType(number,type);
     }
 }

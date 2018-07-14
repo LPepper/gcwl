@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th=”http://www.thymeleaf.org>
 <head>
     <meta name="description"
           content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
@@ -24,6 +24,8 @@
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css"
           href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrapValidator.min.css">
+
 </head>
 <body class="app sidebar-mini rtl">
 <!-- Navbar-->
@@ -123,33 +125,82 @@
         </div>
     </div>
     <ul class="app-menu">
+        <!-- 系统管理员权限 -->
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
+                class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">账号信息</span><i
+                class="treeview-indicator fa fa-angle-right"></i></a>
+            <ul class="treeview-menu">
+                <li><a class="treeview-item" href="admin_add.html"><i class="icon fa fa-circle-o"></i> 增加账号信息</a>
+                </li>
+                <li><a class="treeview-item" href="admin_list.html"><i class="icon fa fa-circle-o"></i> 查看账号列表</a></li>
+
+            </ul>
+        </li>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
+                class="app-menu__icon fa fa-university"></i><span class="app-menu__label">机构信息</span><i
+                class="treeview-indicator fa fa-angle-right"></i></a>
+            <ul class="treeview-menu">
+                <li><a class="treeview-item" href="admin_add.html"><i class="icon fa fa-circle-o"></i> 增加机构</a>
+                </li>
+                <li><a class="treeview-item " href="admin_list.html"><i class="icon fa fa-circle-o"></i> 查看机构列表</a></li>
+
+            </ul>
+        </li>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
+                class="app-menu__icon fa fa-users"></i><span class="app-menu__label">职务信息</span><i
+                class="treeview-indicator fa fa-angle-right"></i></a>
+            <ul class="treeview-menu">
+                <li><a class="treeview-item" href="admin_add.html"><i class="icon fa fa-circle-o"></i> 增加职务</a>
+                </li>
+                <li><a class="treeview-item " href="admin_list.html"><i class="icon fa fa-circle-o"></i> 查看职务列表</a></li>
+
+            </ul>
+        </li>
+        <!-- 车辆管理员权限 -->
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
                 class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">车辆信息</span><i
                 class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-                <li><a class="treeview-item" href="vehicle_add.html"><i class="icon fa fa-circle-o"></i> 增加车辆信息</a></li>
+                <li><a class="treeview-item" href="vehicle_add.html"><i class="icon fa fa-circle-o"></i>
+                    增加车辆信息</a></li>
                 <li><a class="treeview-item" href="vehicle_list.html"><i class="icon fa fa-circle-o"></i> 查看车辆列表</a>
                 </li>
-                <!--li><a class="treeview-item" href="form-samples.html"><i class="icon fa fa-circle-o"></i> Form Samples</a></li>
-                <li><a class="treeview-item" href="form-notifications.html"><i class="icon fa fa-circle-o"></i> Form Notifications</a></li-->
             </ul>
         </li>
-        <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i
-                class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">车辆检查</span><i
-                class="treeview-indicator fa fa-angle-right"></i></a>
+        <li class="treeview"><a class="app-menu__item" href="examine_out_list.html" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span
+                class="app-menu__label">出场检查</span><i class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-                <li><a class="treeview-item" href="examine_out_list.html"><i class="icon fa fa-circle-o"></i>设备检查</a>
+                <li><a class="treeview-item" href="examine_out_list.html"><i class="icon fa fa-circle-o"></i>出场记录列表</a>
                 </li>
-                <li><a class="treeview-item active" href="examine_in_list.html"><i class="icon fa fa-circle-o"></i>技术检查</a>
+                <li><a class="treeview-item" href="examine_out_detail.html"><i class="icon fa fa-circle-o"></i>出场记录填写</a>
                 </li>
             </ul>
         </li>
+        <li class="treeview is-expanded"><a class="app-menu__item" href="examine_in_list.html" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span
+                class="app-menu__label">回场检查</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+            <ul class="treeview-menu">
+                <li><a class="treeview-item" href="examine_in_list.html"><i class="icon fa fa-circle-o"></i>回场记录列表</a>
+                </li>
+                <li><a class="treeview-item active" href="examine_in_detail.html"><i class="icon fa fa-circle-o"></i>回场记录填写</a>
+                </li>
+            </ul>
+        </li>
+        <!-- 业务管理员权限 -->
+        <li><a class="app-menu__item" href="filler_add.html"><i class="app-menu__icon fa fa-dashboard"></i><span
+                class="app-menu__label">发布项目</span></a></li>
+        <li><a class="app-menu__item" href="filler_list.html"><i class="app-menu__icon fa fa-th-list"></i><span
+                class="app-menu__label">我的项目</span></a></li>
+        <!-- 项目管理员权限 -->
+        <li><a class="app-menu__item" href="manager_list.html"><i class="app-menu__icon fa fa-th-list"></i><span
+                class="app-menu__label">项目列表</span></a></li>
+    </ul>
+    </li>
     </ul>
 </aside>
 <main class="app-content">
     <div class="app-title">
         <div>
-            <h1><i class="fa fa-file-text-o"></i> 技术检查</h1>
+            <h1><i class="fa fa-file-text-o"></i> 回场技术检查</h1>
             <!--p>粤A BCDEF</p-->
         </div>
         <ul class="app-breadcrumb breadcrumb">
@@ -157,142 +208,57 @@
             <li class="breadcrumb-item"><a href="#">车辆信息</a></li>
         </ul>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="tile">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <form>
+    <form method="post">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tile">
+                    <div class="row">
+                        <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="col-form-label" for="inputDefault">车牌号</label>
-                                <input class="form-control" id="inputDefault" type="text" placeholder="粤A BCDEF">
+                                <input class="form-control" id="inputDefault" type="text" name="number">
                             </div>
                             <div class="form-group">
-                                <label class="col-form-label" for="inputDefault">里程数（千米）</label>
-                                <input class="form-control" id="inputDefault" type="text" placeholder="6.8">
+                                <label class="col-form-label" for="inputDefault">转向系检查</label>
+                                <input class="form-control" id="inputDefault" type="text" name="steer_check">
                             </div>
                             <div class="form-group">
-                                <label class="col-form-label" for="inputDefault">油量（升）</label>
-                                <input class="form-control" id="inputDefault" type="text" placeholder="8">
+                                <label class="col-form-label" for="inputDefault">传动系检查</label>
+                                <input class="form-control" id="inputDefault" type="text" name="transmission_check">
                             </div>
                             <div class="form-group">
-                                <label class="col-form-label" for="inputDefault">入场时间</label>
-                                <input class="form-control" id="inputDefault" type="text" placeholder="2017-06-30">
+                                <label class="col-form-label" for="inputDefault">日期</label>
+                                <input class="form-control" id="inputDefault" type="text" name="date">
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputFile">车况图片上传</label>
-                                <input class="form-control-file" id="exampleInputFile" type="file"
-                                       aria-describedby="fileHelp">
-                                <small class="form-text text-muted" id="fileHelp">请上传图片</small>
+                            <div class="tile-footer">
+                                <button class="btn btn-primary" type="submit" href="/examine/in/add2">提交并进入安全检查</button>
                             </div>
-                        </form>
-                        <div class="tile-footer">
-                            <button class="btn btn-primary" type="submit">Submit</button>
                         </div>
-                    </div>
-                    <div class="col-lg-4 offset-lg-1">
-                        <form>
+                        <div class="col-lg-4 offset-lg-1">
                             <div class="form-group">
-                                <label class="col-form-label" for="inputDefault">车辆型号</label>
-                                <input class="form-control" id="inputDefault" type="text" placeholder="PLUS JX4D30 ">
+                                <label class="col-form-label" for="inputDefault">入场/出场</label>
+                                <input class="form-control" id="inputDefault" type="text" placeholder="回场" name="type">
                             </div>
                             <div class="form-group">
-                                <label class="col-form-label" for="inputDefault">车辆类型</label>
-                                <input class="form-control" id="inputDefault" type="text" placeholder="高栏车">
-                            </div>
-                            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                                <label class="col-form-label" for="inputDefault">入场或回场：</label>
-                                <button class="btn btn-primary" type="button">入场</button>
-                                <div class="btn-group" role="group">
-                                    <button class="btn btn-primary dropdown-toggle" id="btnGroupDrop1" type="button"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                                    <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" class="dropdown-item" href="#">回场</a></div>
-                                </div>
+                                <label class="col-form-label" for="inputDefault">制动系检查</label>
+                                <input class="form-control" id="inputDefault" type="text" name="brake_check">
                             </div>
                             <div class="form-group">
-                                <label class="col-form-label" for="inputDefault">问题描述</label>
-                                <input class="form-control" id="inputDefault" type="text">
-                            </div>
-                            <!--div class="form-group">
-                              <label class="control-label">购入价值（单位：万元）</label>
-                              <div class="form-group">
-                                <label class="sr-only" for="exampleInputAmount">Amount (in yuan)</label>
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text">¥</span></div>
-                                  <input class="form-control" id="exampleInputAmount" type="text" placeholder="7">
-                                  <div class="input-group-append"><span class="input-group-text">.</span></div>
-                                  <input class="form-control" id="exampleInputAmount" type="text" placeholder="08">
-                                </div>
-                              </div>
-                            </div-->
-                            <!--div class="form-group">
-                              <label class="control-label">物流定价（单位：元）</label>
-                              <div class="form-group">
-                                <label class="sr-only" for="exampleInputAmount">Amount (in yuan)</label>
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text">¥</span></div>
-                                  <input class="form-control" id="exampleInputAmount" type="text" placeholder="3000">
-                                  <div class="input-group-append"><span class="input-group-text">.</span></div>
-                                  <input class="form-control" id="exampleInputAmount" type="text" placeholder="00">
-                                </div>
-                              </div>
-                            </div-->
-                            <!--div class="form-group">
-                              <fieldset disabled="">
-                                <label class="control-label" for="disabledInput">Disabled input</label>
-                                <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input here..." disabled="">
-                              </fieldset>
+                                <label class="col-form-label" for="inputDefault">仪表指示器检查</label>
+                                <input class="form-control" id="inputDefault" type="text" name="dash_board_check">
                             </div>
                             <div class="form-group">
-                              <fieldset>
-                                <label class="control-label" for="readOnlyInput">Readonly input</label>
-                                <input class="form-control" id="readOnlyInput" type="text" placeholder="Readonly input here…" readonly="">
-                              </fieldset>
+                                <label class="col-form-label" for="inputDefault">其他问题描述</label>
+                                <input class="form-control" id="inputDefault" type="text" name="other">
                             </div>
-                            <div class="form-group has-success">
-                              <label class="form-control-label" for="inputSuccess1">Valid input</label>
-                              <input class="form-control is-valid" id="inputValid" type="text">
-                              <div class="form-control-feedback">Success! You've done it.</div>
-                            </div>
-                            <div class="form-group has-danger">
-                              <label class="form-control-label" for="inputDanger1">Invalid input</label>
-                              <input class="form-control is-invalid" id="inputInvalid" type="text">
-                              <div class="form-control-feedback">Sorry, that username's taken. Try another?</div>
-                            </div>
-                            <div class="form-group">
-                              <label class="col-form-label col-form-label-lg" for="inputLarge">Large input</label>
-                              <input class="form-control form-control-lg" id="inputLarge" type="text">
-                            </div>
-                            <div class="form-group">
-                              <label class="col-form-label" for="inputDefault">Default input</label>
-                              <input class="form-control" id="inputDefault" type="text">
-                            </div>
-                            <div class="form-group">
-                              <label class="col-form-label col-form-label-sm" for="inputSmall">Small input</label>
-                              <input class="form-control form-control-sm" id="inputSmall" type="text">
-                            </div>
-                            <div class="form-group">
-                              <label class="control-label">Input addons</label>
-                              <div class="form-group">
-                                <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-                                <div class="input-group">
-                                  <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                  <input class="form-control" id="exampleInputAmount" type="text" placeholder="Amount">
-                                  <div class="input-group-append"><span class="input-group-text">.00</span></div>
-                                </div>
-                              </div>
-                            </div-->
-                        </form>
+
+                        </div>
 
                     </div>
-
                 </div>
-                <!--div class="tile-footer">
-                  <button class="btn btn-primary" type="submit">Submit</button>
-                </div-->
             </div>
         </div>
-    </div>
+    </form>
 </main>
 <!-- Essential javascripts for application to work-->
 <script src="/js/jquery-3.2.1.min.js"></script>

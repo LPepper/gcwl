@@ -200,7 +200,7 @@
 <main class="app-content">
     <div class="app-title">
         <div>
-            <h1><i class="fa fa-file-text-o"></i> 出场技术检查</h1>
+            <h1><i class="fa fa-file-text-o"></i> 出场安全检查</h1>
             <!--p>粤A BCDEF</p-->
         </div>
         <ul class="app-breadcrumb breadcrumb">
@@ -214,46 +214,90 @@
                 <div class="tile">
                     <div class="row">
                         <div class="col-lg-6">
-                            <div class="form-group">
-                                <label class="col-form-label" for="inputDefault">车牌号</label>
-                                <input class="form-control" id="inputDefault" type="text" name="number">
+                            <div>
+                                <div class="form-group">
+                                    <label class="col-form-label" for="inputDefault">车牌号</label>
+                                    <input class="form-control" id="inputDefault" type="text" name="number">
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label" for="inputDefault">容量</label>
+                                    <input class="form-control" id="inputDefault" type="text" name="carload">
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label" for="inputDefault">货箱检查</label>
+                                    <input class="form-control" id="inputDefault" type="text" name="box_check">
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label" for="inputDefault">轮胎检查</label>
+                                    <input class="form-control" id="inputDefault" type="text" name="tyre_check">
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label" for="inputDefault">灭火器检查</label>
+                                    <input class="form-control" id="inputDefault" type="text" name="fire_extinguisher_check">
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label" for="inputDefault">行车记录仪检查</label>
+                                    <input class="form-control" id="inputDefault" type="text" name="recorder_check">
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label" for="inputDefault">侧后防护装置检查</label>
+                                    <input class="form-control" id="inputDefault" type="text" name="protection_check">
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label" for="inputDefault">自动灭火装置检查</label>
+                                    <input class="form-control" id="inputDefault" type="text" name="auto_fire_ex_check">
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label" for="inputDefault">运输车标识检查</label>
+                                    <input class="form-control" id="inputDefault" type="text" name="car_mark_check">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-form-label" for="inputDefault">转向系检查</label>
-                                <input class="form-control" id="inputDefault" type="text" name="steer_check">
-                            </div>
-                            <div class="form-group">
-                                <label class="col-form-label" for="inputDefault">传动系检查</label>
-                                <input class="form-control" id="inputDefault" type="text" name="transmission_check">
-                            </div>
+                        </div>
+                        <div class="col-lg-4 offset-lg-1">
                             <div class="form-group">
                                 <label class="col-form-label" for="inputDefault">日期</label>
                                 <input class="form-control" id="inputDefault" type="text" name="date">
                             </div>
-                            <div class="tile-footer">
-                                <button class="btn btn-primary" type="submit">提交并进入安全检查</button>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 offset-lg-1">
                             <div class="form-group">
                                 <label class="col-form-label" for="inputDefault">回场/出场</label>
                                 <input class="form-control" id="inputDefault" type="text" value="出场" name="type">
                             </div>
                             <div class="form-group">
-                                <label class="col-form-label" for="inputDefault">制动系检查</label>
-                                <input class="form-control" id="inputDefault" type="text" name="brake_check">
+                                <label class="col-form-label" for="inputDefault">人数</label>
+                                <input class="form-control" id="inputDefault" type="text" name="p_number">
                             </div>
                             <div class="form-group">
-                                <label class="col-form-label" for="inputDefault">仪表指示器检查</label>
-                                <input class="form-control" id="inputDefault" type="text" name="dash_board_check">
+                                <label class="col-form-label" for="inputDefault">高(m)</label>
+                                <input class="form-control" id="inputDefault" type="text" name="height">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label" for="inputDefault">灯光检查</label>
+                                <input class="form-control" id="inputDefault" type="text" name="light_check">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label" for="inputDefault">安全带检查</label>
+                                <input class="form-control" id="inputDefault" type="text" name="belt_check">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label" for="inputDefault">三角警告牌检查</label>
+                                <input class="form-control" id="inputDefault" type="text" name="notice_board_check">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label" for="inputDefault">车身反光标识检查</label>
+                                <input class="form-control" id="inputDefault" type="text" name="reflecting_mark_check">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label" for="inputDefault">应急锤检查</label>
+                                <input class="form-control" id="inputDefault" type="text" name="hammer_check">
                             </div>
                             <div class="form-group">
                                 <label class="col-form-label" for="inputDefault">其他问题描述</label>
                                 <input class="form-control" id="inputDefault" type="text" name="other">
                             </div>
-
                         </div>
-
+                    </div>
+                    <div class="tile-footer">
+                        <button class="btn btn-primary" type="submit">提交</button>
                     </div>
                 </div>
             </div>

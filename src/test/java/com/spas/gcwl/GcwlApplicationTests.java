@@ -21,7 +21,7 @@ import java.util.List;
 @SpringBootTest
 public class GcwlApplicationTests {
 
-    /*Logger logger=LoggerFactory.getLogger(this.getClass());
+   // Logger logger=LoggerFactory.getLogger(this.getClass());
     @Autowired
     OrganizationMapper organizationMapper;
 
@@ -52,7 +52,7 @@ public class GcwlApplicationTests {
     }
 
 
-    @Test
+/*    @Test
     @Transactional
     public void userMapperTest(){
         User user=new User("user2","123456","123456","重庆分公司","/pic.jpg");
@@ -81,7 +81,7 @@ public class GcwlApplicationTests {
         Organization organization1=this.organizationMapper.findOrganizationById(id);
         this.organizationMapper.deleteOrganizationByName("成都分公司");
         this.organizationMapper.deleteOrganizationById(id);
-    }
+    }*/
 
     @Test
     @Transactional
@@ -96,9 +96,11 @@ public class GcwlApplicationTests {
         this.carInfoMapper.updateCarState("维修","川A12345");
 
         this.carInfoMapper.deleteCarByNumber("川A12345");
+        this.carInfoMapper.findFreeCars();
+        this.carInfoMapper.findSelectedCars();
     }
 
-    @Test
+/*    @Test
     @Transactional
     public void teckCheckInfoMapperTest(){
         Integer type=1;
@@ -174,7 +176,7 @@ public class GcwlApplicationTests {
         System.out.println(integers.size());
 
     }*/
-    @Autowired
+ /*   @Autowired
     ProjectInfoMapper projectInfoMapper;
     @Test
     @Transactional
@@ -193,6 +195,6 @@ public class GcwlApplicationTests {
         projectInfoMapper.findProjectInfoById(1);
         projectInfoMapper.processingProjectInfoById(1);
         projectInfoMapper.repocessProjectInfoById(1);
-    }
+    }*/
 
 }

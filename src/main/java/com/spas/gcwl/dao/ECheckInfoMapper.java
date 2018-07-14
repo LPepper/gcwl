@@ -19,5 +19,5 @@ public interface ECheckInfoMapper {
 
     @Select("select number,p_number,carload,height,box_check,light_check,tyre_check,belt_check,fire_extinguisher_check,notice_board_check,recorder_check,reflecting_mark_check,protection_check,hammer_check,auto_fire_ex_check,car_mark_check,other,type,date from ECheckInfo " +
             "where number=#{number} and type=#{type}")
-    List<ECheckInfo> findByCarNumAndType(@Param("number") String number,@Param("type")Integer type);
+    List<ECheckInfo> findByCarNumAndType(@Param("number") String number,@Param("type")String type);
 }

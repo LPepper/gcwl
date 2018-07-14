@@ -20,10 +20,13 @@ public class ECheckInfo {
     private String auto_fire_ex_check;
     private String car_mark_check;
     private String other;
-    private Integer type;
+    private String type;
     private Date date;
 
-    public ECheckInfo(String number, Integer p_number, Float carload, Float height, String box_check, String light_check, String tyre_check, String belt_check, String fire_extinguisher_check, String notice_board_check, String recorder_check, String reflecting_mark_check, String protection_check, String hammer_check, String auto_fire_ex_check, String car_mark_check, String other, Integer type, Date date) {
+    public ECheckInfo() {
+    }
+
+    public ECheckInfo(String number, Integer p_number, Float carload, Float height, String box_check, String light_check, String tyre_check, String belt_check, String fire_extinguisher_check, String notice_board_check, String recorder_check, String reflecting_mark_check, String protection_check, String hammer_check, String auto_fire_ex_check, String car_mark_check, String other, String type, Date date) {
         this.number = number;
         this.p_number = p_number;
         this.carload = carload;
@@ -181,11 +184,11 @@ public class ECheckInfo {
         this.other = other;
     }
 
-    public Integer getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(String type) {
         this.type = type;
     }
 

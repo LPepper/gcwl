@@ -9,6 +9,7 @@ public interface CarInfoService {
     int addCarInfo(CarInfo carInfo);
     List<CarInfo> findAllCarInfo();
     List<CarInfo> findFreeCars();
+    List<CarInfo> findSelectedCars();
     CarInfo findCarByNumber( String number);
     int deleteCarByNumber( String number);
     int updateCarState( String state,String number);
@@ -16,6 +17,9 @@ public interface CarInfoService {
     int updateAllInfo(CarInfo carInfo);
     CarInfo findCarById( Integer id);
     int deleteCarById(Integer id);
+    int updateToFreeByNumber(String number);
+    int updateToUseByNumber(String number);
+    int updateToFixByNumber(String number);
 
 
 }

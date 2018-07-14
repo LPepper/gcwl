@@ -20,7 +20,7 @@ public class TeckCheckInfoServiceImpl implements TeckCheckInfoService {
     }
 
     @Override
-    public List<TechCheckInfo> findByCarNumAndType(String number, Integer type) {
+    public List<TechCheckInfo> findByCarNumAndType(String number, String type) {
         return this.teckCheckInfoMapper.findByCarNumAndType(number,type);
     }
 }

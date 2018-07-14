@@ -64,4 +64,24 @@ public class CarInfoSeiviceImpl implements CarInfoService {
     public List<CarInfo> findFreeCars() {
         return carInfoMapper.findFreeCars();
     }
+
+    @Override
+    public List<CarInfo> findSelectedCars() {
+        return carInfoMapper.findSelectedCars();
+    }
+
+    @Override
+    public int updateToFreeByNumber(String number) {
+        return carInfoMapper.updateToFreeByNumber(number);
+    }
+
+    @Override
+    public int updateToUseByNumber(String number) {
+        return carInfoMapper.updateToUseByNumber(number);
+    }
+
+    @Override
+    public int updateToFixByNumber(String number) {
+        return carInfoMapper.updateToFixByNumber(number);
+    }
 }

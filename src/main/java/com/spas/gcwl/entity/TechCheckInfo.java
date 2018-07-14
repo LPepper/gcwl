@@ -12,9 +12,9 @@ public class TechCheckInfo {
     private String dash_board_check;
     private String other;
     private Date date;
-    private Integer type;
+    private String type;
 
-    public TechCheckInfo(String number, String steer_check, String transmission_check, String brake_check, String dash_board_check, String other, Date date, Integer type) {
+    public TechCheckInfo(String number, String steer_check, String transmission_check, String brake_check, String dash_board_check, String other, Date date, String type) {
         this.number = number;
         this.steer_check = steer_check;
         this.transmission_check = transmission_check;
@@ -25,11 +25,14 @@ public class TechCheckInfo {
         this.type = type;
     }
 
-    public Integer getType() {
+    public TechCheckInfo() {
+    }
+
+    public String getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(String type) {
         this.type = type;
     }
 

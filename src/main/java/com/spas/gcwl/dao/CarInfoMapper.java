@@ -22,6 +22,8 @@ public interface CarInfoMapper {
 
     @Select("select * from Carinfo where state='空闲'")
     List<CarInfo> findFreeCars();
+    @Select("select * from Carinfo where state='选中'")
+    List<CarInfo> findSelectedCars();
 
     @Select("select * from Carinfo where number=#{number}")
     CarInfo findCarByNumber(@Param("number") String number);
@@ -44,9 +46,13 @@ public interface CarInfoMapper {
     @Update("update Carinfo set number=#{number},type=#{type},length=#{length},width=#{width},height=#{height},carload=#{carload},belong=#{belong},price=#{price},price_per_day=#{price_per_day},state=#{state},location=#{location},pic_url=#{pic_url} where id=#{id}")
     int updateAllInfo(CarInfo carInfo);
 
+    @Update("update Carinfo set state='空闲' where number=#{number}")
+    int updateToFreeByNumber(String number);
 
+    @Update("update Carinfo set state='使用' where number=#{number}")
+    int updateToUseByNumber(String number);
 
-
-
+    @Update("update Carinfo set state='维修' where number=#{number}")
+    int updateToFixByNumber(String number);
 
 }

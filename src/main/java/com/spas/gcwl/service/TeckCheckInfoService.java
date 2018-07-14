@@ -8,6 +8,6 @@ import java.util.List;
 public interface TeckCheckInfoService {
 
     int addTeckCheckInfo(TechCheckInfo techCheckInfo);
-    List<TechCheckInfo> findByCarNumAndType(String number, Integer type);
+    List<TechCheckInfo> findByCarNumAndType(String number, String type);
 
 }

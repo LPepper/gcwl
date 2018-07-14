@@ -17,6 +17,6 @@ public interface TeckCheckInfoMapper {
     int addTeckCheckInfo(TechCheckInfo techCheckInfo);
 
     @Select("Select number,steer_check,transmission_check,brake_check,dash_board_check,other,date,type from TechCheckInfo where number=#{number} and type=#{type} ")
-    List<TechCheckInfo> findByCarNumAndType(@Param("number") String number, @Param("type") Integer type);
+    List<TechCheckInfo> findByCarNumAndType(@Param("number") String number, @Param("type") String type);
 
 }
