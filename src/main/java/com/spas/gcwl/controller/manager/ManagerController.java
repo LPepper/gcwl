@@ -33,9 +33,18 @@ public class ManagerController {
 
     @RequestMapping("/list")
     public ModelAndView showList(){
-        List<ProjectInfo> projectInfos=this.projectInfoService.findAllSubmittedProjectInfo();
+        List<ProjectInfo> submitprojectInfos=this.projectInfoService.findAllSubmittedProjectInfo();
+        List<ProjectInfo> processedprojectInfos=this.projectInfoService.findProjectInfoByState("processed");
+        List<ProjectInfo> processingprojectInfos=this.projectInfoService.findProjectInfoByState("processing");
+        List<ProjectInfo> reprocessprojectInfos=this.projectInfoService.findProjectInfoByState("reprocess");
+        List<ProjectInfo> comittedprojectInfos=this.projectInfoService.findProjectInfoByState("committed");
         ModelAndView modelAndView=new ModelAndView("manager_list");
-        modelAndView.addObject("projectlist",projectInfos);
+        modelAndView.addObject("projectlist",submitprojectInfos);
+        modelAndView.addObject("processed",processedprojectInfos);
+        modelAndView.addObject("processing",processingprojectInfos);
+        modelAndView.addObject("reprocess",reprocessprojectInfos);
+        modelAndView.addObject("committed",comittedprojectInfos);
+
         return modelAndView;
     }
 

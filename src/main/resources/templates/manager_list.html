@@ -210,7 +210,69 @@
         <div class="col-md-12">
             <div class="tile">
                 <div class="tile-body">
-                    <table class="table table-hover table-bordered" id="sampleTable">
+                    <h3>已提交项目</h3>
+                    <table class="table table-hover table-bordered" id="sampleTable1">
+                        <thead>
+                        <tr>
+                            <th>项目编号</th>
+                            <th>日期</th>
+                            <th>出发地</th>
+                            <th>终点地</th>
+                            <th>项目状态</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                        <tr th:each="project:${projectlist}">
+                            <td><a th:text="${project.getProject_id()}" th:href="@{'/manager/detail/'+ ${project.getProject_id()}}"></a></td>
+                            <td th:text="${project.getBdate()}"> </td>
+                            <td th:text="${project.getBlocation()}"></td>
+                            <td th:text="${project.getElocation()}"></td>
+                            <td th:text="${project.getState()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="tile-body">
+                    <h3>已处理项目</h3>
+                    <table class="table table-hover table-bordered" id="sampleTable2">
+                        <thead>
+                        <tr>
+                            <th>项目编号</th>
+                            <th>日期</th>
+                            <th>出发地</th>
+                            <th>终点地</th>
+                            <th>项目状态</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                        <tr th:each="project:${processed}">
+                            <td><a th:text="${project.getProject_id()}" th:href="@{'/manager/detail/'+ ${project.getProject_id()}}"></a></td>
+                            <td th:text="${project.getBdate()}"> </td>
+                            <td th:text="${project.getBlocation()}"></td>
+                            <td th:text="${project.getElocation()}"></td>
+                            <td th:text="${project.getState()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="tile-body">
+                    <h3>进行中项目</h3>
+                    <table class="table table-hover table-bordered" id="sampleTable3">
                         <thead>
                         <tr>
                             <th>项目编号</th>
@@ -223,13 +285,74 @@
                         </thead>
                         <tbody>
                         <tr>
-                        <tr th:each="project:${projectlist}">
+                        <tr th:each="project:${processing}">
                             <td><a th:text="${project.getProject_id()}" th:href="@{'/manager/detail/'+ ${project.getProject_id()}}"></a></td>
                             <td th:text="${project.getBdate()}"> </td>
                             <td th:text="${project.getBlocation()}"></td>
                             <td th:text="${project.getElocation()}"></td>
                             <td th:text="${project.getState()}"></td>
                             <td><a th:text="完成" th:href="@{'/manager/commit/'+${project.getProject_id()}}"></a> </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="tile-body">
+                    <h3>再处理项目</h3>
+                    <table class="table table-hover table-bordered" id="sampleTable4">
+                        <thead>
+                        <tr>
+                            <th>项目编号</th>
+                            <th>日期</th>
+                            <th>出发地</th>
+                            <th>终点地</th>
+                            <th>项目状态</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                        <tr th:each="project:${reprocess}">
+                            <td><a th:text="${project.getProject_id()}" th:href="@{'/manager/detail/'+ ${project.getProject_id()}}"></a></td>
+                            <td th:text="${project.getBdate()}"> </td>
+                            <td th:text="${project.getBlocation()}"></td>
+                            <td th:text="${project.getElocation()}"></td>
+                            <td th:text="${project.getState()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="tile-body">
+                    <h3>已完成项目</h3>
+                    <table class="table table-hover table-bordered" id="sampleTable5">
+                        <thead>
+                        <tr>
+                            <th>项目编号</th>
+                            <th>日期</th>
+                            <th>出发地</th>
+                            <th>终点地</th>
+                            <th>项目状态</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                        <tr th:each="project:${committed}">
+                            <td><a th:text="${project.getProject_id()}" th:href="@{'/manager/detail/'+ ${project.getProject_id()}}"></a></td>
+                            <td th:text="${project.getBdate()}"> </td>
+                            <td th:text="${project.getBlocation()}"></td>
+                            <td th:text="${project.getElocation()}"></td>
+                            <td th:text="${project.getState()}"></td>
                         </tr>
                         </tbody>
                     </table>

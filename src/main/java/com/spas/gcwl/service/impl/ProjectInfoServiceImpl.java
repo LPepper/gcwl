@@ -61,4 +61,9 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
     public int deleteProjecctInfoById(Integer project_id){
         return  projectInfoMapper.deleteProjecctInfoById(project_id);
     }
+
+    @Override
+    public List<ProjectInfo> findProjectInfoByState(String state) {
+        return projectInfoMapper.findProjectInfoByState(state);
+    }
 }

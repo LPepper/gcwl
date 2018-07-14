@@ -17,4 +17,5 @@ public interface ProjectInfoService {
     int processingProjectInfoById(Integer project_id);
     int commitProjectInfoById(ProjectInfo projectInfo);
     int deleteProjecctInfoById(Integer project_id);
+    List<ProjectInfo> findProjectInfoByState(String state);
 }
