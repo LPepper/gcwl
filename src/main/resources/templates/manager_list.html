@@ -215,6 +215,7 @@
                         <thead>
                         <tr>
                             <th>项目编号</th>
+                            <th>项目名称</th>
                             <th>日期</th>
                             <th>出发地</th>
                             <th>终点地</th>
@@ -225,6 +226,7 @@
                         <tr>
                         <tr th:each="project:${projectlist}">
                             <td><a th:text="${project.getProject_id()}" th:href="@{'/manager/detail/'+ ${project.getProject_id()}}"></a></td>
+                            <td th:text="${project.getName()}"></td>
                             <td th:text="${project.getBdate()}"> </td>
                             <td th:text="${project.getBlocation()}"></td>
                             <td th:text="${project.getElocation()}"></td>
