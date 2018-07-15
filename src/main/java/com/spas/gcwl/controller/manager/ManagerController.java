@@ -8,6 +8,7 @@ import com.spas.gcwl.service.impl.CarInfoSeiviceImpl;
 import com.spas.gcwl.service.impl.ProjectACarImpl;
 import com.spas.gcwl.service.impl.ProjectInfoServiceImpl;
 
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -86,10 +87,10 @@ public class ManagerController {
     }
     @PostMapping("/offer2/{project_id}")
     public ModelAndView offer2(ProjectInfo projectInfo, String number, @PathVariable("project_id") Integer project_id){
-
+        String username = (String) SecurityUtils.getSubject().getPrincipal();
         projectInfo.setProject_id(project_id);
         projectInfo.setState("processed");
-        projectInfo.setHandler_username("123456");
+        projectInfo.setHandler_username(username);
         projectInfoService.processSubmittedProjectInfoById(projectInfo);
         ProjectACar projectACar=new ProjectACar();
         projectACar.setNumber(number);

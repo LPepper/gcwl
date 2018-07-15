@@ -52,9 +52,9 @@ public class ExamineController {
     }
     @PostMapping("/in/add")
     public ModelAndView inAddT(TechCheckInfo techCheckInfo){
-        ModelAndView modelAndView=new ModelAndView("forward:/examine/in/add2");
+        ModelAndView modelAndView=new ModelAndView("redirect:/examine/in/add2");
         teckCheckInfoService.addTeckCheckInfo(techCheckInfo);
-        if(techCheckInfo.getBrake_check()!="正常" || techCheckInfo.getDash_board_check()!="正常"|| techCheckInfo.getSteer_check()!="正常"|| techCheckInfo.getTransmission_check()!="正常")
+        if(!techCheckInfo.getBrake_check().equals("正常") || !techCheckInfo.getDash_board_check().equals("正常")|| !techCheckInfo.getSteer_check().equals("正常")|| !techCheckInfo.getTransmission_check().equals("正常"))
             carInfoSeivice.updateToFixByNumber(techCheckInfo.getNumber());
         ProjectInfo projectInfo=new ProjectInfo(projectACarService.findAProject_idByNumber(techCheckInfo.getNumber()),techCheckInfo.getDate(),"committed");
         projectInfoService.commitProjectInfoById(projectInfo);
@@ -70,7 +70,7 @@ public class ExamineController {
     public ModelAndView inAddE(ECheckInfo eCheckInfo){
         ModelAndView modelAndView=new ModelAndView("examine_in_detail2");
         eCheckInfoService.addECheckInfo(eCheckInfo);
-        if(eCheckInfo.getAuto_fire_ex_check()!="正常" || eCheckInfo.getBelt_check()!="正常" || eCheckInfo.getBox_check()!="正常" || eCheckInfo.getCar_mark_check()!="正常" || eCheckInfo.getFire_extinguisher_check()!="正常" || eCheckInfo.getHammer_check()!="正常"|| eCheckInfo.getLight_check()!="正常" || eCheckInfo.getNotice_board_check()!="正常"|| eCheckInfo.getProtection_check()!="正常"|| eCheckInfo.getRecorder_check()!="正常"|| eCheckInfo.getReflecting_mark_check()!="正常")
+        if(!eCheckInfo.getAuto_fire_ex_check().equals("正常") || !eCheckInfo.getBelt_check().equals("正常") || !eCheckInfo.getBox_check().equals("正常") || !eCheckInfo.getCar_mark_check().equals("正常") || !eCheckInfo.getFire_extinguisher_check().equals("正常") || !eCheckInfo.getHammer_check().equals("正常")|| !eCheckInfo.getLight_check().equals("正常" )|| !eCheckInfo.getNotice_board_check().equals("正常")|| !eCheckInfo.getProtection_check().equals("正常")|| !eCheckInfo.getRecorder_check().equals("正常")|| !eCheckInfo.getReflecting_mark_check().equals("正常"))
             carInfoSeivice.updateToFixByNumber(eCheckInfo.getNumber());
         else carInfoSeivice.updateToFreeByNumber(eCheckInfo.getNumber());
         return modelAndView;
@@ -83,8 +83,8 @@ public class ExamineController {
     }
     @PostMapping("/out/add")
     public ModelAndView outAddT(TechCheckInfo techCheckInfo){
-        ModelAndView modelAndView=new ModelAndView("forward:/examine/out/add2");
-        if(techCheckInfo.getBrake_check()!="正常" || techCheckInfo.getDash_board_check()!="正常"|| techCheckInfo.getSteer_check()!="正常"|| techCheckInfo.getTransmission_check()!="正常") carInfoSeivice.updateToFixByNumber(techCheckInfo.getNumber());
+        ModelAndView modelAndView=new ModelAndView("redirect:/examine/out/add2");
+        if(!techCheckInfo.getBrake_check().equals("正常") || !techCheckInfo.getDash_board_check().equals("正常")|| !techCheckInfo.getSteer_check().equals("正常")|| !techCheckInfo.getTransmission_check().equals("正常")) carInfoSeivice.updateToFixByNumber(techCheckInfo.getNumber());
         teckCheckInfoService.addTeckCheckInfo(techCheckInfo);
         return modelAndView;
     }
@@ -98,10 +98,10 @@ public class ExamineController {
     public ModelAndView outAddE(ECheckInfo eCheckInfo){
         ModelAndView modelAndView=new ModelAndView("examine_out_detail2");
         eCheckInfoService.addECheckInfo(eCheckInfo);
-        if(eCheckInfo.getAuto_fire_ex_check()!="正常" || eCheckInfo.getBelt_check()!="正常" || eCheckInfo.getBox_check()!="正常" || eCheckInfo.getCar_mark_check()!="正常" || eCheckInfo.getFire_extinguisher_check()!="正常" || eCheckInfo.getHammer_check()!="正常"|| eCheckInfo.getLight_check()!="正常" || eCheckInfo.getNotice_board_check()!="正常"|| eCheckInfo.getProtection_check()!="正常"|| eCheckInfo.getRecorder_check()!="正常"|| eCheckInfo.getReflecting_mark_check()!="正常")
+        if(!eCheckInfo.getAuto_fire_ex_check().equals("正常") || !eCheckInfo.getBelt_check().equals("正常") || !eCheckInfo.getBox_check().equals("正常") || !eCheckInfo.getCar_mark_check().equals("正常") || !eCheckInfo.getFire_extinguisher_check().equals("正常") || !eCheckInfo.getHammer_check().equals("正常")|| !eCheckInfo.getLight_check().equals("正常" )|| !eCheckInfo.getNotice_board_check().equals("正常")|| !eCheckInfo.getProtection_check().equals("正常")|| !eCheckInfo.getRecorder_check().equals("正常")|| !eCheckInfo.getReflecting_mark_check().equals("正常"))
             carInfoSeivice.updateToFixByNumber(eCheckInfo.getNumber());
         else carInfoSeivice.updateToUseByNumber(eCheckInfo.getNumber());
-        if (carInfoSeivice.findCarStateByNumber(eCheckInfo.getNumber())=="维修"){
+        if (carInfoSeivice.findCarStateByNumber(eCheckInfo.getNumber()).equals("维修")){
             ProjectInfo projectInfo=new ProjectInfo(projectACarService.findAProject_idByNumber(eCheckInfo.getNumber()),eCheckInfo.getDate(),"reprocess");
             projectInfoService.reprocessProjectInfoById(projectACarService.findAProject_idByNumber(eCheckInfo.getNumber()));
         }
